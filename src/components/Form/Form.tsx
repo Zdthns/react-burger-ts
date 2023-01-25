@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { IformFields } from "../../utils/types/types";
 import style from "./style.module.css";
 import PropTypes from "prop-types";
@@ -7,7 +7,17 @@ import {
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-const Form: React.FC = ({
+type PropTypes = {
+  fields: [];
+  buttonText: string;
+  form: any;
+  onChange: React.ChangeEvent<HTMLInputElement>;
+  onSubmit: React.EventHandler<FormEvent>;
+  resetForm?: React.EventHandler<FormEvent>;
+  buttonVisible: boolean;
+};
+
+const Form: React.FC<PropTypes> = ({
   fields,
   buttonText,
   form,
@@ -49,11 +59,4 @@ const Form: React.FC = ({
   );
 };
 
-Form.propTypes = {
-  fields: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-  buttonText: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  form: PropTypes.objectOf(PropTypes.string).isRequired,
-};
 export default Form;

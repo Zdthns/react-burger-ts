@@ -10,7 +10,7 @@ export type TsArr = number | string;
 export type TIngredient = {
   _id: string;
   name: string;
-  type: string;
+  type: 'bun' | 'main' | 'sauce';
   proteins: number;
   fat: number;
   carbohydrates: number;
@@ -24,12 +24,28 @@ export type TIngredient = {
   count?: number
 };
 
+export type TOrderDetails = {
+  ingredients: Array<string>;
+  _id: string;
+  name: string;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+  id?: string;
+  count?: TCount
+};
 
-export type initialStateConstructorType ={}
-export type initialStateIngredientType ={}
-export type initialStateIngredientsType ={}
-export type initialStateOrderType ={}
-export type initialStateWsType ={}
+export type TCount = {
+  [elem: string]: number
+}
+export type TOrder = {
+  success: boolean;
+  orders: TOrderDetails[];
+  total: number;
+  totalToday: number;
+};
+
 
 
 

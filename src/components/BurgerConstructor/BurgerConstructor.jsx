@@ -17,8 +17,6 @@ import { wsGetMessage } from "../../services/actions/wsConect";
 import {
   ADD_INGREDIENT_TO_CONSTRUCTOR,
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  //addIngredientToConstructor,
-  //DeleteIngredientFromConstructor,
 } from "../../services/actions/constructor.js";
 
 function BurgerConstructor({ createOrder }) {

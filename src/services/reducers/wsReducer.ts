@@ -10,9 +10,25 @@ import {
   WS_USER_CONNECTION_CLOSED,
   WS_USER_GET_MESSAGE,
   WS_USER_CONNECTION_START,
+  wsConectType,
 } from "../actions/wsConect";
 
-const initialState = {
+type initialStateType = {
+  wsConnected: boolean,
+  wsError: string |undefined,
+  messages: {
+    orders: [],
+    total: number,
+    totalToday: number,
+  },
+  userMessages: {
+    orders: [],
+    total: number,
+    totalToday: number,
+  },
+};
+
+const initialState:initialStateType  = {
   wsConnected: false,
   wsError: undefined,
   messages: {
@@ -27,7 +43,7 @@ const initialState = {
   },
 };
 
-const wsReducer = (state = initialState, action) => {
+const wsReducer = (state = initialState, action: wsConectType) => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {

@@ -14,7 +14,8 @@ const initialState: TinitialStateConstructor = {
   constructorIngredients:[],
 };
 
-function constructorReducer(state = initialState, action: any) {
+
+function constructorReducer(state = initialState, action:any ) {
   switch (action.type) {
     case ADD_INGREDIENT_TO_CONSTRUCTOR: {
       return {

@@ -5,20 +5,23 @@ import {
   CLOSE_ORDER_DETAILS,
 } from "../actions/modals";
 
-export type initialStateModalsType ={
-  ingredientDetailsVisible: boolean,
-  orderVisible: boolean,
-}
+//export type initialStateModalsType ={
+//  ingredientDetailsVisible: boolean,
+//  orderVisible: boolean,
+//}
 
-const initialState: initialStateModalsType = {
+//const initialState: initialStateModalsType = {
+//  ingredientDetailsVisible: false,
+//  orderVisible: false,
+//};
+
+const initialState = {
   ingredientDetailsVisible: false,
   orderVisible: false,
 };
-
 export const modalsReducer = (
-  state: initialStateModalsType = initialState,
-  action: any
-):initialStateModalsType => {
+  state = initialState, action
+)=> {
   switch (action.type) {
     case OPEN_INGREDIENT_DETAILS: {
       return {

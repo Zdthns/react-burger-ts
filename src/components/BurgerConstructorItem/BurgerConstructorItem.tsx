@@ -1,7 +1,7 @@
 import style from "./burgerConstructorItem.module.css";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useDrag, useDrop } from "react-dnd";
+import { useDrag, useDrop, XYCoord } from "react-dnd";
 import PropTypes from "prop-types";
 
 import {
@@ -10,38 +10,37 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import {
-  //DeleteIngredientFromConstructor,
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
   moveItems,
 } from "../../services/actions/constructor.js";
+import { TIngredient } from "../../utils/types/types";
 
-const BurgerConstructorItem = React.memo((props) => {
+type TconstructorItemProps = {
+  item: TIngredient;
+  index: number;
+};
+
+const BurgerConstructorItem = React.memo((props: TconstructorItemProps) => {
   const dispatch = useDispatch();
 
-  //const deleteElement = (evt, item) => {
-  //  evt.preventDefault();
-
-  //  dispatch(DeleteIngredientFromConstructor(item.key));
-  //};
-  const deleteElement = (evt, item) => {
+  const deleteElement = (evt: React.MouseEvent, item: any) => {
     evt.preventDefault();
-
     dispatch({
       type: DELETE_INGREDIENT_FROM_CONSTRUCTOR,
       id: item.key,
     });
   };
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLDivElement | null>(null);
 
   const [, drop] = useDrop({
     accept: "constructorIngredient",
-    hover: (item, monitor) => {
+    hover: (item: { index: number }, monitor) => {
       if (!ref.current) {
         return;
       }
 
-      const dragIndex = item.index;
-      const hoverIndex = props.index;
+      const dragIndex: number = item.index;
+      const hoverIndex: number = props.index;
 
       if (dragIndex === hoverIndex) {
         return;
@@ -51,7 +50,7 @@ const BurgerConstructorItem = React.memo((props) => {
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
       }
@@ -89,15 +88,10 @@ const BurgerConstructorItem = React.memo((props) => {
         text={props.item.name}
         price={props.item.price}
         thumbnail={props.item.image}
-        handleClose={(e) => deleteElement(e, props.item)}
+        handleClose={() => deleteElement(evt, props.item)}
       />
     </div>
   );
 });
-
-BurgerConstructorItem.propTypes = {
-  image: PropTypes.string,
-  index: PropTypes.number.isRequired,
-};
 
 export default BurgerConstructorItem;

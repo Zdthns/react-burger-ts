@@ -3,15 +3,17 @@ import {
   applyMiddleware,
   compose,
 } from "redux";
-import { rootReducer } from "../services/reducers/root.js";
+import { rootReducer } from "./reducers/root.js";
 import thunk from "redux-thunk";
-import { socketMiddleware } from "../services/middleware/socketMiddleware";
+import { socketMiddleware } from "./middleware/socketMiddleware";
 import { wsUrl, wsUserUrl } from "../utils/userApi";
-import { wsActions, wsUserActions } from "./../services/actions/wsConect";
+import { wsActions, wsUserActions } from "./actions/wsConect";
 
 const composeEnhancers =
+//@ts-ignore
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+//@ts-ignore
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
 export const enhancer = composeEnhancers(

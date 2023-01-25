@@ -1,8 +1,15 @@
 import { Route, redirect, Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ReactNode } from "react";
+import { AppStateType } from "../../services/reducers/root";
 
-function RouterProvider({ children, anonymous = false }) {
-  const { isAuth } = useSelector((store) => store.user);
+interface IrouterProvider {
+  children?: ReactNode;
+  anonymous: boolean;
+}
+
+const RouterProvider = ({ children, anonymous = false }: IrouterProvider) => {
+  const { isAuth } = useSelector((state: AppStateType) => state.user);
   const location = useLocation();
 
   if (!anonymous && !isAuth) {
@@ -13,6 +20,6 @@ function RouterProvider({ children, anonymous = false }) {
     return <Navigate to={from.pathname} state={from.state} replace />;
   }
   return children;
-}
+};
 
 export default RouterProvider;

@@ -55,50 +55,67 @@ export const wsUserActions:wsUserActionsType = {
   wsClose: WS_USER_CONNECTION_CLOSED,
 };
 
+
+export type wsConectType =
+  IwsConnectionStartType
+  | IwsConnectionSuccessType
+  | IwsConnectionErrorType
+  | IwsConnectionClosedType
+  | IwsConnectionCloseType
+  | IwsGetMessageType
+  | IwsUserConnectionStartType
+  | IwsUserConnectionStartType
+  | IwsUserConnectionSuccessType
+  | IwsUserGetMessageType
+  | IwsUserSendMessageType
+  | IwsUserConnectionErrorType
+  | IwsUserConnectionClosedType
+  | IwsUserConnectionCloseType
+
 export interface IwsConnectionStartType  {
-  readonly type: typeof WS_CONNECTION_START,
+  readonly type: typeof WS_CONNECTION_START;
 };
 export interface IwsConnectionSuccessType  {
-  readonly type: typeof WS_CONNECTION_SUCCESS,
+  readonly type: typeof WS_CONNECTION_SUCCESS;
 };
 export interface IwsConnectionErrorType    {
-  readonly type: typeof WS_CONNECTION_ERROR,
+  readonly type: typeof WS_CONNECTION_ERROR;
 };
 export interface IwsConnectionClosedType   {
-  readonly type: typeof WS_CONNECTION_CLOSED,
+  readonly type: typeof WS_CONNECTION_CLOSED;
 };
 export interface IwsConnectionCloseType  {
-  readonly type: typeof WS_CONNECTION_CLOSE,
+  readonly type: typeof WS_CONNECTION_CLOSE;
 };
 export interface IwsGetMessageType  {
-  readonly type: typeof WS_GET_MESSAGE,
-  readonly payload: any,
+  readonly type: typeof WS_GET_MESSAGE;
+  readonly payload: any;
 };
 export interface IwsUserConnectionStartType {
-  readonly type: typeof WS_USER_CONNECTION_START,
+  readonly type: typeof WS_USER_CONNECTION_START;
   readonly payload: {
-    readonly url: string,
+    readonly url: string;
 };
 }
 export interface IwsUserConnectionSuccessType {
-  readonly type: typeof WS_USER_CONNECTION_SUCCESS,
+  readonly type: typeof WS_USER_CONNECTION_SUCCESS;
 };
 export interface IwsUserGetMessageType {
-  readonly type: typeof WS_USER_GET_MESSAGE,
-  readonly payload: any,
+  readonly type: typeof WS_USER_GET_MESSAGE;
+  readonly payload: {};
 };
 export interface IwsUserSendMessageType {
-  readonly type: typeof WS_USER_SEND_MESSAGE,
+  readonly type: typeof WS_USER_SEND_MESSAGE;
   readonly payload: any,
 };
 export interface IwsUserConnectionErrorType {
-  readonly  type: typeof WS_USER_CONNECTION_ERROR,
+  readonly  type: typeof WS_USER_CONNECTION_ERROR;
 };
 export interface IwsUserConnectionClosedType  {
-  readonly type: typeof WS_USER_CONNECTION_CLOSED,
+  readonly type: typeof WS_USER_CONNECTION_CLOSED;
 };
 export interface IwsUserConnectionCloseType {
-  readonly type: typeof WS_USER_CONNECTION_CLOSE,
+  readonly type: typeof WS_USER_CONNECTION_CLOSE;
 };
 
 export const wsConnectionStart = (): IwsConnectionStartType => {

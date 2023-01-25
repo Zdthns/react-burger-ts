@@ -5,9 +5,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import IngredientCard from "../IngredientCard/IngredientCard";
+import { AppStateType } from "../../services/reducers/root";
+import { TIngredient } from "../../utils/types/types";
 
-const CardBlock = React.forwardRef(({ type, name, onClick }, ref) => {
-  const ingredients = useSelector((state) => state.ingredients.ingredients);
+type PropType = { type: string; name: string; onClick: () => {} };
+
+const CardBlock = React.forwardRef(({ type, name, onClick }: PropType, ref) => {
+  const ingredients = useSelector(
+    (state: AppStateType) => state.ingredients.ingredients
+  );
 
   return (
     <li ref={ref}>

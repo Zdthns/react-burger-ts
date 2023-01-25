@@ -28,7 +28,10 @@ import {
 
 
 export type initialStateUserType = {
-  user: string | null,
+  user: {
+    email: string;
+    password: string;
+    name: string;} | null,
   isAuth: boolean,
 
   // востановление пароля
