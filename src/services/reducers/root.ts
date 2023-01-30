@@ -18,5 +18,6 @@ export const rootReducer = combineReducers({
   wsReducer: wsReducer,
 });
 
-type rootReducerType = typeof rootReducer;
+export type rootReducerType = typeof rootReducer;
 export type AppStateType = ReturnType<rootReducerType>;
+

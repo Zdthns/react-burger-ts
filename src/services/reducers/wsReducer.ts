@@ -1,3 +1,4 @@
+import { TOrderDetails } from "../../utils/types/types";
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
@@ -17,12 +18,12 @@ type initialStateType = {
   wsConnected: boolean,
   wsError: string |undefined,
   messages: {
-    orders: [],
+    orders: Array<TOrderDetails>,
     total: number,
     totalToday: number,
   },
   userMessages: {
-    orders: [],
+    orders: Array<TOrderDetails>,
     total: number,
     totalToday: number,
   },

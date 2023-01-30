@@ -1,16 +1,15 @@
 import React from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-
 import style from "./style.module.css";
 import Form from "../../components/Form/Form";
 import { loginUser } from "../../services/actions/user";
+import { useAppDispatch } from "../../services/hook/hook";
 
 function LoginPage() {
   const [form, setForm] = React.useState({ email: "", password: "" });
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  //const { isAuth } = useSelector((store) => store.user);
+
   const location = useLocation();
 
   const fromPage = location.state?.from?.pathname || "/";
@@ -20,19 +19,14 @@ function LoginPage() {
     { name: "password", placeholder: "пароль", type: "password" },
   ];
 
-  const onChange = (evt) => {
+  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: React.ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(loginUser(form));
   };
-  //React.useEffect(() => {
-  //  if (isAuth) {
-  //    return navigate(`${fromPage}`);
-  //  }
-  //});
 
   return (
     <section className={style.wrapper}>
@@ -44,7 +38,6 @@ function LoginPage() {
         form={form}
         onChange={onChange}
         onSubmit={onSubmit}
-        //ressetForm={ressetForm}
       />
 
       <div className={style.caption}>

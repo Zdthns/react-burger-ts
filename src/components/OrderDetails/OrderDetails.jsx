@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../services/hook/hook";
 import style from "./orderDetails.module.css";
 import PropTypes from "prop-types";
 import img from "../../images/done.png";
 
 function OrderDetails() {
-  const orderNumber = useSelector((state) => state.order.order.number);
+  const orderNumber = useAppSelector((state) => state.order.order.number);
   return (
     <section className={`${style.container}`}>
       <span className={`${style.title} text_type_digits-large mt-4 mb-8`}>

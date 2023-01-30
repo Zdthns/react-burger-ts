@@ -1,15 +1,16 @@
 import { getCookie, setCookie } from "./cookie";
+import { IUser } from "./types/types";
 export const api = "https://norma.nomoreparties.space/api";
 
-export const wsUrl = "wss://norma.nomoreparties.space/orders/all";
-export const wsUserUrl = "wss://norma.nomoreparties.space/orders";
+export const wsUrl:string = "wss://norma.nomoreparties.space/orders/all";
+export const wsUserUrl:string = "wss://norma.nomoreparties.space/orders";
 
-export const checkResponse = (res) => {
+export const checkResponse = (res: Response) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
 // регистрация
-export const getRegistrationUser = (data) =>
+export const getRegistrationUser = (data:IUser) =>
   fetch(`${api}/auth/register`, {
     method: "POST",
     mode: "cors",
@@ -26,7 +27,7 @@ export const getRegistrationUser = (data) =>
   }).then(checkResponse);
 
 //логин
-export const getUserLogin = (data) =>
+export const getUserLogin = (data:IUser) =>
   fetch(`${api}/auth/login`, {
     method: "POST",
     mode: "cors",
@@ -55,8 +56,8 @@ export const getUserLogout = () =>
   }).then(checkResponse);
 
 // сброс пароля
-export const getPasswordReset = async (email) => {
-  return fetch(`${api}/password-reset`, {
+export const getPasswordReset = (email:string) => {
+  fetch(`${api}/password-reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -68,11 +69,11 @@ export const getPasswordReset = async (email) => {
 };
 //в разработке
 
-export function setNewPassword(data) {
+export function setNewPassword(password: string, token: string) {
   return fetch(`${api}/password-reset/reset`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify({password: password, token: token}),
   }).then(checkResponse);
 }
 
@@ -90,7 +91,7 @@ export const getUser = () =>
   }).then(checkResponse);
 // обновление данных пользователя
 
-export const updateUser = (data) =>
+export const updateUser = (data:string[]) =>
   fetch(`${api}/auth/user`, {
     method: "PATCH",
 

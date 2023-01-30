@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useMatch } from "react-router-dom";
 
-function CustomLink({ children, to, ...props }) {
+function CustomLink({ children: HTML, to: string, ...props }) {
   const match = useMatch({ path: to, end: true });
 
   return (

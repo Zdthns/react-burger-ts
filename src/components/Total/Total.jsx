@@ -8,10 +8,10 @@ import {
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../services/hook/hook";
 
 export default function Total({ openOrder }) {
-  const constructorIngredients = useSelector(
+  const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
   );
   const bun =

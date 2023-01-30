@@ -1,14 +1,17 @@
-import { Route, redirect, Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ReactNode } from "react";
+import { ReactNode, FC, ReactElement } from "react";
 import { AppStateType } from "../../services/reducers/root";
 
 interface IrouterProvider {
-  children?: ReactNode;
-  anonymous: boolean;
+  children: ReactElement;
+  anonymous?: boolean;
 }
 
-const RouterProvider = ({ children, anonymous = false }: IrouterProvider) => {
+const RouterProvider: FC<IrouterProvider> = ({
+  children,
+  anonymous = false,
+}): ReactElement => {
   const { isAuth } = useSelector((state: AppStateType) => state.user);
   const location = useLocation();
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, ReactElement } from "react";
 import ReactDOM from "react-dom";
 
 import style from "./modal.module.css";
@@ -9,11 +9,16 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay";
 
 import PropTypes from "prop-types";
 
-const popup = document.getElementById("modals");
+const popup = document.getElementById("modals") as HTMLElement;
+type PropsType = {
+  children: ReactElement;
+  title: string;
+  onClose: () => void;
+};
 
-function Modal({ children, title, onClose }) {
+const Modal: FC<PropsType> = ({ children, title, onClose }) => {
   React.useEffect(() => {
-    const close = (evt: React.KeyboardEvent) => {
+    const close = (evt: KeyboardEvent) => {
       if (evt.key === "Escape") {
         onClose();
       }
@@ -39,11 +44,6 @@ function Modal({ children, title, onClose }) {
     </>,
     popup
   );
-}
-
-Modal.propTypes = {
-  children: PropTypes.node.isRequired,
-  header: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
 };
+
 export default Modal;

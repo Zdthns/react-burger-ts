@@ -1,4 +1,4 @@
-import { React, useMemo } from "react";
+import { useMemo } from "react";
 import style from "./burgerConstructor.module.css";
 
 import PropTypes from "prop-types";
@@ -9,7 +9,8 @@ import BurgerConstructorItem from "../BurgerConstructorItem/BurgerConstructorIte
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../services/hook/hook";
 import { useDrop } from "react-dnd";
 import { useNavigate } from "react-router-dom";
 import { wsGetMessage } from "../../services/actions/wsConect";
@@ -17,28 +18,30 @@ import { wsGetMessage } from "../../services/actions/wsConect";
 import {
   ADD_INGREDIENT_TO_CONSTRUCTOR,
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-} from "../../services/actions/constructor.js";
+} from "../../utils/types/constants";
 
 function BurgerConstructor({ createOrder }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuth } = useSelector((store) => store.user);
-  const constructorIngredients = useSelector(
-    (store) => store.constructorReducer.constructorIngredients
+  const { isAuth } = useAppSelector((store) => store.user);
+  const constructorIngredients = useAppSelector(
+    (store) => store.constructorReducer
   );
-  const orderBun = useMemo(() =>
-    constructorIngredients.find((item) => item.type === "bun")
-  );
+  const orderBun = useMemo(() => {
+    constructorIngredients.find(
+      (item: { type: string }) => item.type === "bun"
+    );
+  }, []);
 
-  const burgerBun = useMemo(() =>
-    constructorIngredients.filter((item) => item.type === "bun")
-  );
+  const burgerBun = useMemo(() => {
+    constructorIngredients.filter((item) => item.type === "bun");
+  }, []);
 
-  const orderToppings = useMemo(() =>
+  const orderToppings = useMemo(() => {
     constructorIngredients
       .filter((item) => item.type !== "bun")
-      .map((item) => item._id)
-  );
+      .map((item) => item._id);
+  }, []);
 
   const orderData = useMemo(() => {
     if (!orderBun || !orderToppings.length) return [];

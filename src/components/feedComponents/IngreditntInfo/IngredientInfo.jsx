@@ -1,11 +1,13 @@
 import { React, useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../services/hook/hook";
 import PropTypes from "prop-types";
 import style from "./style.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function IngredientInfo({ ingredient, count }) {
-  const allIngredients = useSelector((store) => store.ingredients.ingredients);
+  const allIngredients = useAppSelector(
+    (store) => store.ingredients.ingredients
+  );
 
   const currentIngredient = useMemo(() => {
     if (!ingredient || 0) return null;

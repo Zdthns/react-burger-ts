@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import style from "./ingredientCard.module.css";
@@ -7,7 +7,7 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-
+import { useAppSelector } from "../../services/hook/hook";
 import PropTypes from "prop-types";
 import ingredientsTypes from "../../utils/types.js";
 
@@ -15,7 +15,7 @@ function IngredientCard({ elem, onClick }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const ingredientId = elem._id;
-  const constructorIngredients = useSelector(
+  const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
   );
   const counter = React.useMemo(() => {

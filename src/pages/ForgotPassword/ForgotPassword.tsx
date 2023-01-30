@@ -1,26 +1,22 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import {
-  EmailInput,
-  Button,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import style from "../style.module.css";
 import Form from "../../components/Form/Form";
 import { requestCode } from "../../services/actions/user";
-import { IformFields, TStringFunc } from "../../utils/types/types";
+import { TFields } from "../../utils/types/types";
+import { useAppDispatch } from "../../services/hook/hook";
 
 const ForgotPassword: React.FC = () => {
   const [form, setForm] = React.useState({ email: "" });
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const fields: IformFields[] = [
+  const fields: TFields[] = [
     { name: "email", placeholder: "Укажите e-mail", type: "email" },
   ];
 
-  const onChange = (evt: React.ChangeEvent<HTMLFormElement>) => {
+  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 

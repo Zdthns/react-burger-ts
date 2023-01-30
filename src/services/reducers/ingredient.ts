@@ -1,18 +1,20 @@
-import { TIngredient } from "../../utils/types/types";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { TActions } from "../../utils/types/constants";
+import { Iingredient } from "../../utils/types/types";
 import {
   ADD_INGREDIENT_DATA,
   DELETE_INGREDIENT_DATA,
-} from "../actions/ingredients";
+} from "../../utils/types/constants";
 
 type TinitialStateingredientDetails = {
-  currentIngredient: TIngredient | {},
+  currentIngredient: Iingredient | null,
 };
 
 const initialState: TinitialStateingredientDetails = {
-  currentIngredient: {},
+  currentIngredient: null,
 };
 
-const ingredientDetailsReducer = (state = initialState, action: any) => {
+const ingredientDetailsReducer = (state = initialState, action: TActions) => {
   switch (action.type) {
     case ADD_INGREDIENT_DATA: {
       return {
@@ -23,7 +25,7 @@ const ingredientDetailsReducer = (state = initialState, action: any) => {
     case DELETE_INGREDIENT_DATA: {
       return {
         ...state,
-        currentIngredient: {},
+        currentIngredient: null,
       };
     }
     default: {

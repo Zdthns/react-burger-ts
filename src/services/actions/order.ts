@@ -1,11 +1,12 @@
 import { getOrderNumber } from "../../utils/burger";
+import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
+import { TOrderData } from "../../utils/types/types";
+import { AppDispatch } from "../store";
 
-export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
-export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
-export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
 
-export function getOrder(orderData) {
-  return function (dispatch) {
+
+export const getOrder = (orderData: TOrderData) => {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_ORDER_REQUEST,
     });

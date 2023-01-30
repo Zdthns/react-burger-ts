@@ -1,4 +1,4 @@
-export const formatStatus = (status) => {
+export const formatStatus = (status: string) => {
   if (status === "done") {
     return "Выполнен";
   }
@@ -11,7 +11,7 @@ export const formatStatus = (status) => {
   return "Создан";
 };
 
-const formatNumber = (number, words) =>
+const formatNumber = (number: number, words: Array<string>) =>
   words[
     number % 100 > 4 && number % 100 < 20
       ? 2

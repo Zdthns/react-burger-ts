@@ -4,10 +4,11 @@ import {
   compose,
 } from "redux";
 import { rootReducer } from "./reducers/root.js";
-import thunk from "redux-thunk";
+import thunk, { ThunkAction } from "redux-thunk";
 import { socketMiddleware } from "./middleware/socketMiddleware";
 import { wsUrl, wsUserUrl } from "../utils/userApi";
 import { wsActions, wsUserActions } from "./actions/wsConect";
+import { ActionCreator, Action } from "@reduxjs/toolkit";
 
 const composeEnhancers =
 //@ts-ignore
@@ -25,3 +26,7 @@ export const enhancer = composeEnhancers(
 );
 
 export const store = createStore(rootReducer, enhancer);
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;
+

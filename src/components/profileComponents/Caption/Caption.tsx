@@ -6,7 +6,7 @@ function Caption() {
   const location = useLocation();
   const isOrders = location.pathname.includes("orders");
 
-  function textCaption(isOrders) {
+  function textCaption(isOrders: boolean) {
     if (isOrders) {
       return "В этом разделе вы можете просмотреть свою историю заказов";
     } else {

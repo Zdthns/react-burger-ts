@@ -1,7 +1,7 @@
 import style from "./style.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../services/hook/hook";
 import { formatDate } from "../../utils/orders";
 import { useMemo } from "react";
 import Ingredient from "../feedComponents/ingredient/Ingredient";
@@ -16,7 +16,9 @@ export function Order({
   const ingredientsqty = ingredients.length;
   const hideIngredirntQty = ingredientsqty - 6;
 
-  const allIngredients = useSelector((store) => store.ingredients.ingredients);
+  const allIngredients = useAppSelector(
+    (store) => store.ingredients.ingredients
+  );
   const ingredientsDataArray = useMemo(() => {
     return ingredients.map((ingredientInOrder) => {
       return allIngredients.find((item) => ingredientInOrder === item._id);

@@ -1,12 +1,14 @@
-import { TIngredient } from "../../utils/types/types";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { Iingredient } from "../../utils/types/types";
 import {
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED,
-} from "../actions/ingredients";
+  TActions,
+} from "../../utils/types/constants";
 
 export type  initialStateType = {
-  ingredients: [ ],
+  ingredients: ReadonlyArray<Iingredient>,
   ingredientsRequest: boolean,
   ingredientsFailed: boolean,
 };
@@ -17,7 +19,7 @@ const initialState:initialStateType = {
   ingredientsFailed: false,
 };
 
-const ingredientsReducer = (state = initialState, action:[string, {}]) => {
+const ingredientsReducer = (state = initialState, action:TActions) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {

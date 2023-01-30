@@ -1,28 +1,29 @@
-import React from "react";
+import React, { FC, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import style from "../style.module.css";
-
+import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import Form from "../../components/Form/Form";
 import { registrationUser } from "../../services/actions/user.js";
+import { TFields } from "../../utils/types/types";
 
-function RegisterPage() {
+function RegistrPage() {
   const [form, setForm] = React.useState({ name: "", email: "", password: "" });
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { isAuth } = useSelector((store) => store.user);
+  const { isAuth } = useAppSelector((store) => store.user);
 
-  const fields = [
+  const fieldsForm: TFields[] = [
     { name: "name", placeholder: "имя", type: "text" },
     { name: "email", placeholder: "e-mail", type: "email" },
     { name: "password", placeholder: "пароль", type: "password" },
   ];
 
-  const onChange = (evt) => {
+  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: React.ChangeEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(registrationUser({ ...form }));
   };
@@ -35,7 +36,7 @@ function RegisterPage() {
     <section className={style.wrapper}>
       <h1>Регистрация</h1>
       <Form
-        fields={fields}
+        fields={fieldsForm}
         buttonText="Регистрация"
         form={form}
         onChange={onChange}
@@ -49,4 +50,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default RegistrPage;

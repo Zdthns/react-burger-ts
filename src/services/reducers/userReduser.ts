@@ -1,9 +1,10 @@
+import { IUser, TUser } from "../../utils/types/types";
 import {
   FORGOT_CODE_REQUEST,
   FORGOT_CODE_ERROR,
   FORGOT_CODE_SUCCESS,
   FORGOT_PASSWORD_REQUEST,
-  FORGOT_PASSWORD__SUCCESS,
+  FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_ERROR,
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
@@ -24,14 +25,11 @@ import {
   UPDATE_TOKEN_REQUEST,
   UPDATE_TOKEN_SUCCESS,
   UPDATE_TOKEN_ERROR,
-} from "../actions/user";
+} from "../../utils/types/constants";
 
 
 export type initialStateUserType = {
-  user: {
-    email: string;
-    password: string;
-    name: string;} | null,
+  user: IUser | null,
   isAuth: boolean,
 
   // востановление пароля
@@ -71,6 +69,95 @@ export type initialStateUserType = {
   //загрузка
   preloader: boolean,
 }
+
+interface IForgotCodeRequest {
+  readonly type: typeof FORGOT_CODE_REQUEST;
+}
+// запрос выполнился успешно
+interface IForgotCodeSuccess {
+  readonly type: typeof FORGOT_CODE_SUCCESS;
+}
+// запрос выполнился с ошибкой
+interface IForgotCodeError{
+  readonly type: typeof FORGOT_CODE_ERROR;
+}
+// запрос вып
+export interface IResetPasswordRequest {
+  readonly type: typeof FORGOT_PASSWORD_REQUEST;
+}
+export interface IResetPasswordSuccess {
+  readonly type: typeof FORGOT_PASSWORD_SUCCESS;
+}
+export interface IResetPasswordFailed {
+  readonly type: typeof FORGOT_PASSWORD_ERROR;
+}
+// Регистрация
+interface IsRegisterUserRequest {
+  readonly type: typeof REGISTER_USER_REQUEST
+}
+ interface IRegisterUserSuccess {
+  readonly type: typeof REGISTER_USER_SUCCESS;
+  readonly user: TUser;
+}
+interface IRegisterUserError {
+  readonly type: typeof REGISTER_USER_ERROR
+}
+// запрос данных о пользователе
+interface IGetUserRequest {
+  readonly type: typeof GET_USER_REQUEST;
+}
+ interface IGetUserSuccess {
+  readonly type: typeof GET_USER_SUCCESS;
+  readonly user: TUser;
+}
+
+interface IGetUserError {
+  readonly type: typeof GET_USER_ERROR;
+}
+// изменение данных о пользователя
+ interface IUpdateUserRequest {
+  readonly type: typeof UPDATE_USER_REQUEST;
+}
+export interface IUpdateUserSuccess {
+  readonly type: typeof UPDATE_USER_SUCCESS;
+  readonly user: TUser;
+}
+export interface IUpdateUserError {
+  readonly type: typeof UPDATE_USER_ERROR;
+}
+// токен
+ interface IUpdateTokenRequest {
+  readonly type: typeof UPDATE_TOKEN_REQUEST;
+}
+ interface IUpdateTokenSuccess {
+  readonly type: typeof UPDATE_TOKEN_SUCCESS;
+  readonly user: TUser;
+}
+ interface IUpdateTokenError {
+  readonly type: typeof UPDATE_TOKEN_ERROR;
+}
+
+ interface ILoginUserRequest  {
+  readonly type: typeof LOGIN_USER_REQUEST;
+}
+ interface ILoginUserSuccess  {
+  readonly type: typeof LOGIN_USER_SUCCESS;
+}
+ interface ILoginUserError {
+  readonly type: typeof LOGIN_USER_ERROR;
+}
+// выход
+export interface ILogoutRequest {
+  readonly type: typeof LOGOUT_USER_REQUEST;
+}
+export interface ILogoutSuccess {
+  readonly type: typeof LOGOUT_USER_SUCCESS;
+}
+export interface ILogoutError {
+  readonly type: typeof LOGOUT_USER_ERROR;
+}
+
+
 const initialState: initialStateUserType = {
   user: null,
   isAuth: false,
@@ -150,7 +237,7 @@ const userReducer = (state: initialStateUserType = initialState, action: any): i
         isReplacePasswordFailed: false,
       };
     }
-    case FORGOT_PASSWORD__SUCCESS: {
+    case FORGOT_PASSWORD_SUCCESS: {
       return {
         ...state,
         isReplacePasswordRequest: false,

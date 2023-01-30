@@ -1,8 +1,6 @@
 import { React } from "react";
 import { useLocation, Link } from "react-router-dom";
 
-import { useSelector } from "react-redux";
-
 import style from "../style.module.css";
 import Order from "../../Order/Order";
 

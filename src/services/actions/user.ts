@@ -1,4 +1,6 @@
 import { setCookie } from "../../utils/cookie.js";
+import { FORGOT_CODE_REQUEST, FORGOT_CODE_SUCCESS, FORGOT_CODE_ERROR, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_ERROR, UPDATE_TOKEN_REQUEST, UPDATE_TOKEN_SUCCESS, UPDATE_TOKEN_ERROR, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_ERROR, LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_ERROR, UPDATE_USER_REQUEST, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_ERROR, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_ERROR, FORGOT_PASSWORD_SUCCESS } from "../../utils/types/constants.js";
+import { AppDispatch } from "../store";
 import {
   getPasswordReset,
   getRegistrationUser,
@@ -10,40 +12,13 @@ import {
   setNewPassword,
 } from "../../utils/userApi.js";
 
-export const FORGOT_CODE_REQUEST = "FORGOT_CODE_REQUEST";
-export const FORGOT_CODE_ERROR = "FORGOT_CODE_ERROR";
-export const FORGOT_CODE_SUCCESS = "FORGOT_CODE_SUCCESS";
-export const FORGOT_PASSWORD__SUCCESS = "FORGOT_CODE_SUCCESS";
-export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
-export const FORGOT_PASSWORD_ERROR = "FORGOT_PASSWORD_ERROR";
-
-export const LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST";
-export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
-export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
-export const REGISTER_USER_REQUEST = "LOGIN_USER_REQUEST";
-export const REGISTER_USER_SUCCESS = "LOGIN_USER_SUCCESS";
-export const REGISTER_USER_ERROR = "LOGIN_USER_ERROR";
-export const TOGGLE_IS_PRELOADER = "TOGGLE_IS_PRELOADER";
-export const LOGOUT_USER_REQUEST = "LOGOUT_USER_REQUEST";
-export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
-export const LOGOUT_USER_ERROR = "LOGOUT_USER_ERROR";
-export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
-export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
-export const UPDATE_USER_ERROR = "UPDATE_USER_ERROR";
-export const GET_USER_REQUEST = "GET_USER_REQUEST";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-export const GET_USER_ERROR = "GET_USER_ERROR";
-export const UPDATE_TOKEN_REQUEST = "UPDATE_TOKEN_REQUEST";
-export const UPDATE_TOKEN_SUCCESS = "UPDATE_TOKEN_SUCCESS";
-export const UPDATE_TOKEN_ERROR = "UPDATE_TOKEN_ERROR";
-
 // запрос на востановление пароля
-export const requestCode = (email) => {
-  return function (dispatch) {
+export const requestCode = (email:string) => {
+  return function (dispatch:AppDispatch) {
     dispatch({ type: FORGOT_CODE_REQUEST });
     getPasswordReset(email)
-      .then((res) => {
-        if (res && res.success) {
+      .then((res: Response) => {
+        if (res && res.success:) {
           dispatch({ type: FORGOT_CODE_SUCCESS });
         }
       })
@@ -54,7 +29,7 @@ export const requestCode = (email) => {
 // регистрация
 
 export const registrationUser = (data) => {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: REGISTER_USER_REQUEST });
     getRegistrationUser(data)
       .then((res) => {
@@ -74,7 +49,7 @@ export const registrationUser = (data) => {
 
 //обновление токена
 export const refreshToken = () => {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: UPDATE_TOKEN_REQUEST });
     updateToken()
       .then((res) => {
@@ -92,7 +67,7 @@ export const refreshToken = () => {
 };
 
 export const loginUser = (data) => {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: LOGIN_USER_REQUEST });
     getUserLogin(data)
       .then((res) => {
@@ -113,7 +88,7 @@ export const loginUser = (data) => {
 // выход
 
 export const logoutUser = () => {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: LOGOUT_USER_REQUEST });
     getUserLogout()
       .then((res) => {
@@ -126,8 +101,8 @@ export const logoutUser = () => {
       .catch(() => dispatch({ type: LOGOUT_USER_ERROR }));
   };
 };
-export const getUpdateUser = (data) => {
-  return function (dispatch) {
+export const getUpdateUser = (data: AppDispatch) => {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: UPDATE_USER_REQUEST });
     updateUser(data)
       .then((res) => {
@@ -147,7 +122,7 @@ export const getUpdateUser = (data) => {
   };
 };
 export const authUser = () => {
-  return function (dispatch) {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: GET_USER_REQUEST });
     getUser()
       .then((res) => {
@@ -172,26 +147,25 @@ export const authUser = () => {
   };
 };
 
-// в разработке
-//export const requestPasswordReset = (email) => {
-//  return function (dispatch) {
-//    dispatch({ type: FORGOT_PASSWORD_REQUEST });
-//    getPasswordReset(email)
-//      .then((res) => {
-//        console.log(res);
-//        if (res && res.success) {
-//          dispatch({ type: FORGOT_PASSWORD_SUCCESS });
-//        }
-//      })
-//      .catch(() => dispatch({ type: FORGOT_PASSWORD_ERROR }));
-//  };
-//};
-export const resetPassword = (data) => {
+export const requestPasswordReset = (email) => {
   return function (dispatch) {
     dispatch({ type: FORGOT_PASSWORD_REQUEST });
-    setNewPassword(data)
+    getPasswordReset(email)
+      .then((res) => {
+        console.log(res);
+        if (res && res.success) {
+          dispatch({ type: FORGOT_PASSWORD_SUCCESS });
+        }
+      })
+      .catch(() => dispatch({ type: FORGOT_PASSWORD_ERROR }));
+  };
+};
+export const resetPassword = (password: string, token: string) => {
+  return function (dispatch: AppDispatch) {
+    dispatch({ type: FORGOT_PASSWORD_REQUEST });
+    setNewPassword(password, token)
       .then(() => {
-        dispatch({ type: FORGOT_PASSWORD__SUCCESS });
+        dispatch({ type: FORGOT_PASSWORD_SUCCESS });
       })
       .catch(() => dispatch({ type: FORGOT_PASSWORD_ERROR }));
   };

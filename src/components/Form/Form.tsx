@@ -1,20 +1,20 @@
 import React, { FormEvent, useState } from "react";
-import { IformFields } from "../../utils/types/types";
 import style from "./style.module.css";
 import PropTypes from "prop-types";
 import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TFields } from "../../utils/types/types";
 
 type PropTypes = {
-  fields: [];
+  fields: TFields[];
   buttonText: string;
-  form: any;
-  onChange: React.ChangeEvent<HTMLInputElement>;
-  onSubmit: React.EventHandler<FormEvent>;
-  resetForm?: React.EventHandler<FormEvent>;
-  buttonVisible: boolean;
+  form: string[];
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
+  resetForm?: (evt: React.FormEvent<HTMLFormElement>) => void;
+  buttonVisible?: boolean;
 };
 
 const Form: React.FC<PropTypes> = ({

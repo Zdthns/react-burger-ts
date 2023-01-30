@@ -1,11 +1,12 @@
 import React from "react";
 import style from "./ingredientDetails.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../services/hook/hook";
 
 function IngredientDetails() {
   const { id } = useParams();
-  const ingredient = useSelector((store) =>
+  const ingredient = useAppSelector((store) =>
     store.ingredients.ingredients.find((item) => item._id === id)
   );
 

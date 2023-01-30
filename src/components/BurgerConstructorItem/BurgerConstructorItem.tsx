@@ -1,5 +1,5 @@
 import style from "./burgerConstructorItem.module.css";
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop, XYCoord } from "react-dnd";
 import PropTypes from "prop-types";
@@ -9,22 +9,18 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import {
-  DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  moveItems,
-} from "../../services/actions/constructor.js";
-import { TIngredient } from "../../utils/types/types";
+import { DELETE_INGREDIENT_FROM_CONSTRUCTOR } from "../../utils/types/constants";
+import { Iingredient } from "../../utils/types/types";
 
 type TconstructorItemProps = {
-  item: TIngredient;
+  item: Iingredient;
   index: number;
 };
 
-const BurgerConstructorItem = React.memo((props: TconstructorItemProps) => {
+const BurgerConstructorItem: FC<TconstructorItemProps> = React.memo((props) => {
   const dispatch = useDispatch();
 
-  const deleteElement = (evt: React.MouseEvent, item: any) => {
-    evt.preventDefault();
+  const deleteElement = (item: Iingredient) => {
     dispatch({
       type: DELETE_INGREDIENT_FROM_CONSTRUCTOR,
       id: item.key,
@@ -57,9 +53,6 @@ const BurgerConstructorItem = React.memo((props: TconstructorItemProps) => {
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
       }
-
-      dispatch(moveItems(dragIndex, hoverIndex));
-
       item.index = hoverIndex;
     },
   });
@@ -88,7 +81,7 @@ const BurgerConstructorItem = React.memo((props: TconstructorItemProps) => {
         text={props.item.name}
         price={props.item.price}
         thumbnail={props.item.image}
-        handleClose={() => deleteElement(evt, props.item)}
+        handleClose={() => deleteElement(props.item)}
       />
     </div>
   );

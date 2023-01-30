@@ -1,26 +1,23 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import {
   OPEN_INGREDIENT_DETAILS,
   CLOSE_INGREDIENT_DETAILS,
   OPEN_ORDER_DETAILS,
   CLOSE_ORDER_DETAILS,
-} from "../actions/modals";
+} from "../../utils/types/constants";
 
-//export type initialStateModalsType ={
-//  ingredientDetailsVisible: boolean,
-//  orderVisible: boolean,
-//}
+ type initialStateType ={
+  ingredientDetailsVisible: boolean,
+  orderVisible: boolean,
+}
 
-//const initialState: initialStateModalsType = {
-//  ingredientDetailsVisible: false,
-//  orderVisible: false,
-//};
 
-const initialState = {
+const initialState:initialStateType = {
   ingredientDetailsVisible: false,
   orderVisible: false,
 };
 export const modalsReducer = (
-  state = initialState, action
+  state = initialState, action:PayloadAction
 )=> {
   switch (action.type) {
     case OPEN_INGREDIENT_DETAILS: {

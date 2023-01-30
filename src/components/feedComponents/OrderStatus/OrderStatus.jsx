@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../services/hook/hook";
 
 import style from "../style.module.css";
 
 function OrdersStatus() {
-  const { total, totalToday, orders } = useSelector(
+  const { total, totalToday, orders } = useAppSelector(
     (store) => store.wsReducer.messages
   );
 

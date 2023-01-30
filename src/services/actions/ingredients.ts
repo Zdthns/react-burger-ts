@@ -1,13 +1,10 @@
 import { getIngredientsApi } from "../../utils/burger.js";
-export const ADD_INGREDIENT_DATA = "ADD_INGREDIENT_DATA";
-export const DELETE_INGREDIENT_DATA = "DELETE_INGREDIENT_DATA";
+import { GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED, ADD_INGREDIENT_DATA, DELETE_INGREDIENT_DATA, TActions } from "../../utils/types/constants.js";
+import { Iingredient } from "../../utils/types/types.js";
+import { AppDispatch } from "../store.js";
 
-export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
-export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
-export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
-
-export function getIngredients() {
-  return function (dispatch) {
+export const getIngredients =()=> {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_INGREDIENTS_REQUEST,
     });
@@ -27,7 +24,8 @@ export function getIngredients() {
       .catch(() => dispatch({ type: GET_INGREDIENTS_FAILED }));
   };
 }
-export function addIngredientData(item) {
+
+export const addIngredientData = (item: Iingredient )=> {
   return {
     type: ADD_INGREDIENT_DATA,
     item: item,
@@ -37,6 +35,6 @@ export function addIngredientData(item) {
 export function deleteIngredienData() {
   return {
     type: DELETE_INGREDIENT_DATA,
-    item: "",
+    item: null,
   };
 }

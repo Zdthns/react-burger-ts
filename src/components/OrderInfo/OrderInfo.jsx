@@ -1,9 +1,9 @@
 import { React, useMemo, useEffect } from "react";
 import style from "./style.module.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
+import { useAppSelector } from "../../services/hook/hook";
 import { authUser } from "../../services/actions/user";
 import {
   wsUserConnectionStart,
@@ -22,11 +22,11 @@ function OrderInfo() {
   const isProfile = location.pathname.includes("profile");
   const isFeed = location.pathname.includes("feed");
 
-  const userOrders = useSelector(
+  const userOrders = useAppSelector(
     (store) => store.wsReducer.userMessages.orders
   );
 
-  const allOrders = useSelector((store) => store.wsReducer.messages.orders);
+  const allOrders = useAppSelector((store) => store.wsReducer.messages.orders);
   const orders = isProfile ? userOrders : allOrders;
 
   orders.map((el) => {
@@ -35,7 +35,9 @@ function OrderInfo() {
     };
   });
   let orderData = orders.find((el) => el._id === id);
-  const allIngredients = useSelector((store) => store.ingredients.ingredients);
+  const allIngredients = useAppSelector(
+    (store) => store.ingredients.ingredients
+  );
 
   const orderInfo = useMemo(() => {
     if (!orderData || 0) return null;

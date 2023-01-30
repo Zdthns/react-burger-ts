@@ -1,13 +1,12 @@
-import { React, useEffect, useState, FC } from "react";
+import { useEffect, useState, FC } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../services/hook/hook";
 import style from "./app.module.css";
 
 import Layout from "../Layout/Layout";
 import LoginPage from "../../pages/LoginPage/LoginPage";
-import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import ForgotPassword from "../../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 import Profile from "../../pages/Profile/Profile";
@@ -32,19 +31,25 @@ import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import OrderInfo from "../OrderInfo/OrderInfo";
 import OrderPage from "../../pages/OrdersPage/OrderPage";
+import { Iingredient, TOrderData } from "../../utils/types/types";
+import RegistrPage from "../../pages/RegistrPage/RegistrPage";
 
 function App() {
-  const { isAuth } = useSelector((store) => store.user);
-  const dispatch = useDispatch();
+  const { isAuth } = useAppSelector((store) => store.user);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [orderDetailsOpen, setOrderDetailsOpen] = useState(false);
-  const { currentIngredient } = useSelector((store) => store.ingredientDetails);
+  const { currentIngredient } = useAppSelector(
+    (store) => store.ingredientDetails
+  );
   const background = location.state?.background;
   const cookie = getCookie("token");
 
   const refreshTokenData = localStorage.getItem("token");
-  const updateTokenSuccess = useSelector((store) => store.user.isTokenSuccess);
+  const updateTokenSuccess = useAppSelector(
+    (store) => store.user.isTokenSuccess
+  );
   const [ingredientOpen, setIngredientOpen] = useState(false);
 
   // order
@@ -59,7 +64,7 @@ function App() {
     setOrderDetailsOpen(true);
   };
   //ingredient
-  const openIngredientModal = (item) => {
+  const openIngredientModal = (item: Iingredient) => {
     dispatch(addIngredientData(item));
     setIngredientOpen(true);
   };
@@ -83,7 +88,7 @@ function App() {
     dispatch(getIngredients());
   }, [dispatch, refreshTokenData, isAuth, cookie, updateTokenSuccess]);
 
-  const createOrder = (orderData) => {
+  const createOrder = (orderData: TOrderData) => {
     dispatch(getOrder(orderData));
     openOrderModal();
   };
@@ -138,7 +143,7 @@ function App() {
           <Route path="/ingredients/:id" element={<IngredientDetails />} />
           <Route path="/feed/" element={<Feed />} />
           <Route path="/feed/:id" element={<OrderInfo />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/registr" element={<RegistrPage />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
@@ -170,7 +175,7 @@ function App() {
             path="/profile/orders/:id"
             element={
               <ProtectedRoute>
-                <Modal item=" text" title=" " onClose={closeModal}>
+                <Modal item="text" title=" " onClose={closeModal}>
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

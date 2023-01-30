@@ -1,5 +1,5 @@
-import { React, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import style from "./style.module.css";
 import Orders from "../../components/feedComponents/Orders/Orders";
 import OrdersStatus from "../../components/feedComponents/OrderStatus/OrderStatus";
@@ -8,11 +8,12 @@ import {
   wsConnectionClosed,
   wsConnectionStart,
 } from "../../services/actions/wsConect";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { wsUrl } from "../../utils/userApi.js";
+import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 
 function Feed() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function Feed() {
     };
   }, [dispatch, location]);
 
-  const orders = useSelector((store) => store.wsReducer.messages.orders);
+  const orders = useAppSelector((store) => store.wsReducer.messages.orders);
   return (
     <section className={style.page}>
       <article className={`pl-2 pr-2 ${style.feed_section}`}>

@@ -1,3 +1,4 @@
+import { TOrder, TOrderDetails } from "../../utils/types/types";
 
 export const WS_CONNECTION_START = "WS_CONNECTION_START";
 export const WS_CONNECTION_SUCCESS = "WS_CONNECTION_SUCCESS";
@@ -74,12 +75,14 @@ export type wsConectType =
 
 export interface IwsConnectionStartType  {
   readonly type: typeof WS_CONNECTION_START;
+  readonly url: string;
 };
 export interface IwsConnectionSuccessType  {
   readonly type: typeof WS_CONNECTION_SUCCESS;
 };
 export interface IwsConnectionErrorType    {
   readonly type: typeof WS_CONNECTION_ERROR;
+  readonly payload: any
 };
 export interface IwsConnectionClosedType   {
   readonly type: typeof WS_CONNECTION_CLOSED;
@@ -89,7 +92,7 @@ export interface IwsConnectionCloseType  {
 };
 export interface IwsGetMessageType  {
   readonly type: typeof WS_GET_MESSAGE;
-  readonly payload: any;
+  readonly payload: TOrderDetails;
 };
 export interface IwsUserConnectionStartType {
   readonly type: typeof WS_USER_CONNECTION_START;
@@ -102,14 +105,15 @@ export interface IwsUserConnectionSuccessType {
 };
 export interface IwsUserGetMessageType {
   readonly type: typeof WS_USER_GET_MESSAGE;
-  readonly payload: {};
+  readonly payload: TOrderDetails;
 };
 export interface IwsUserSendMessageType {
   readonly type: typeof WS_USER_SEND_MESSAGE;
-  readonly payload: any,
+  readonly payload: TOrder
 };
 export interface IwsUserConnectionErrorType {
   readonly  type: typeof WS_USER_CONNECTION_ERROR;
+  readonly payload: any;
 };
 export interface IwsUserConnectionClosedType  {
   readonly type: typeof WS_USER_CONNECTION_CLOSED;
@@ -118,9 +122,10 @@ export interface IwsUserConnectionCloseType {
   readonly type: typeof WS_USER_CONNECTION_CLOSE;
 };
 
-export const wsConnectionStart = (): IwsConnectionStartType => {
+export const wsConnectionStart = (url:string): IwsConnectionStartType => {
   return {
     type: WS_CONNECTION_START,
+      url,
   };
 };
 
@@ -130,9 +135,10 @@ export const wsConnectionSuccess = (): IwsConnectionSuccessType => {
   };
 };
 
-export const wsConnectionError = (): IwsConnectionErrorType => {
+export const wsConnectionError = (error: any): IwsConnectionErrorType => {
   return {
     type: WS_CONNECTION_ERROR,
+     payload: error
   };
 };
 
@@ -147,7 +153,7 @@ export const wsConnectionClose = (): IwsConnectionCloseType => {
   };
 };
 
-export const wsGetMessage = (message: any): IwsGetMessageType => {
+export const wsGetMessage = (message: TOrderDetails): IwsGetMessageType => {
   return {
     type: WS_GET_MESSAGE,
     payload: message,
@@ -169,26 +175,24 @@ export const wsUserConnectionSuccess = (): IwsUserConnectionSuccessType => {
   };
 };
 
-export const wsUserGetMessage = (userMessage: any): IwsUserGetMessageType => {
-  console.log(`wsUserGetMessage: ${userMessage}`);
-
+export const wsUserGetMessage = (userMessage: TOrderDetails): IwsUserGetMessageType => {
   return {
     type: WS_USER_GET_MESSAGE,
-    payload: userMessage,
+    payload: userMessage
   };
 };
 
-export const wsUserSendMessage = (order: any): IwsUserSendMessageType => {
-  console.log(`wsUserSendMessage: ${order}`);
+export const wsUserSendMessage = (order: TOrder): IwsUserSendMessageType => {
 
   return {
     type: WS_USER_SEND_MESSAGE,
     payload: order,
   };
 };
-export const wsUserConnectionError = (): IwsUserConnectionErrorType => {
+export const wsUserConnectionError = (error: any): IwsUserConnectionErrorType => {
   return {
     type: WS_USER_CONNECTION_ERROR,
+    payload: error
   };
 };
 export const wsUserConnectionClosed = (): IwsUserConnectionClosedType => {

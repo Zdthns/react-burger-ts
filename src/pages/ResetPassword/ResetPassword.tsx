@@ -5,6 +5,7 @@ import Form from "../../components/Form/Form";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import style from "../style.module.css";
 import { resetPassword } from "../../services/actions/user.js";
+import { useAppDispatch } from "../../services/hook/hook";
 
 function ResetPasswordPage() {
   const location = useLocation();
@@ -14,7 +15,7 @@ function ResetPasswordPage() {
     login: "",
     password: "",
   });
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const fields = [
     {
@@ -31,11 +32,11 @@ function ResetPasswordPage() {
     },
   ];
 
-  const onChange = (evt) => {
+  const onChange = (evt: { target: { name: any; value: any } }) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: { preventDefault: () => void }) => {
     evt.preventDefault();
     dispatch(resetPassword(form));
   };

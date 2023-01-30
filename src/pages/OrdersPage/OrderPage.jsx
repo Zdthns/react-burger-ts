@@ -1,8 +1,8 @@
 import { React, useEffect } from "react";
 import style from "./style.module.css";
 
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../services/hook/hook";
 import {
   wsUserConnectionStart,
   wsUserConnectionClose,
@@ -28,7 +28,7 @@ function OrderPage() {
     };
   }, [dispatch, token]);
 
-  const orders = useSelector((store) => store.wsReducer.userMessages.orders);
+  const orders = useAppSelector((store) => store.wsReducer.userMessages.orders);
 
   return (
     <section className={style.section_wrapper}>
