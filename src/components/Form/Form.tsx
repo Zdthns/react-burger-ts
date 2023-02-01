@@ -10,7 +10,7 @@ import { TFields } from "../../utils/types/types";
 type PropTypes = {
   fields: TFields[];
   buttonText: string;
-  form: string[];
+  form: Array<string>;
   onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
   resetForm?: (() => void) | ((evt: SyntheticEvent) => void);

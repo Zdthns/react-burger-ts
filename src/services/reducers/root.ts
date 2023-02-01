@@ -7,7 +7,7 @@ import orderReducer from "./order.js";
 import modalsReducer from "./modals.js";
 import userReducer from "./userReduser.js";
 import wsReducer from "./wsReducer";
-import { store } from "../store.js";
+
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,

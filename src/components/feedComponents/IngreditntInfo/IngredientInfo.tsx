@@ -1,10 +1,17 @@
-import { React, useMemo } from "react";
+import { useMemo } from "react";
 import { useAppSelector } from "../../../services/hook/hook";
 import PropTypes from "prop-types";
 import style from "./style.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TCount } from "../../../utils/types/types";
 
-function IngredientInfo({ ingredient, count }) {
+function IngredientInfo({
+  ingredient,
+  count,
+}: {
+  ingredient: string;
+  count: TCount[];
+}) {
   const allIngredients = useAppSelector(
     (store) => store.ingredients.ingredients
   );

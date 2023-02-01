@@ -1,18 +1,25 @@
 import style from "./style.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { useAppSelector } from "../../services/hook/hook";
 import { formatDate } from "../../utils/orders";
-import { useMemo } from "react";
+import { FC, useMemo } from "react";
 import Ingredient from "../feedComponents/ingredient/Ingredient";
 
-export function Order({
+type PropTypes = {
+  status: string;
+  orderNumber: string;
+  orderCreateTime: string;
+  burgerName: string;
+  ingredients: string[];
+};
+
+const Order: FC<PropTypes> = ({
   status,
   orderNumber,
   orderCreateTime,
   burgerName,
   ingredients,
-}) {
+}) => {
   const ingredientsqty = ingredients.length;
   const hideIngredirntQty = ingredientsqty - 6;
 
@@ -119,14 +126,6 @@ export function Order({
       </section>
     </section>
   );
-}
+};
 
 export default Order;
-
-Order.propTypes = {
-  status: PropTypes.string.isRequired,
-  orderNumber: PropTypes.number.isRequired,
-  orderCreateTime: PropTypes.string.isRequired,
-  burgerName: PropTypes.string.isRequired,
-  ingredients: PropTypes.array.isRequired,
-};

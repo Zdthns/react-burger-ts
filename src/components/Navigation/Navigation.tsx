@@ -9,7 +9,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 const Navigation = () => {
-  const setActive = ({ isActive }) => (isActive ? style.active : style.text);
+  const setActive = ({ isActive }: { isActive: boolean }) =>
+    isActive ? style.active : style.text;
   const location = useLocation();
   const isFeed = location.pathname.includes("feed");
   const isConstructor = location.pathname.includes("/");

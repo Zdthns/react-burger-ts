@@ -1,8 +1,13 @@
 import React from "react";
 import style from "../style.module.css";
-import PropTypes from "prop-types";
 
-function Ingredient({ ingredientimage, ingredientName }) {
+function Ingredient({
+  ingredientimage,
+  ingredientName,
+}: {
+  ingredientimage: string;
+  ingredientName: string;
+}) {
   return (
     <div className={style.border}>
       <div className={style.item}>
@@ -13,7 +18,3 @@ function Ingredient({ ingredientimage, ingredientName }) {
 }
 
 export default Ingredient;
-Ingredient.propTypes = {
-  ingredientName: PropTypes.string.isRequired,
-  ingredientimage: PropTypes.string.isRequired,
-};

@@ -9,7 +9,7 @@ import { AppStateType } from "../../services/reducers/root";
 
 type PropType = { type: string; name: string; onClick: (event: any) => void };
 
-const CardBlock: React.FC<PropType> = React.forwardRef(
+const CardBlock = React.forwardRef<HTMLLIElement, PropType>(
   ({ type, name, onClick }, ref) => {
     const ingredients = useAppSelector(
       (state: AppStateType) => state.ingredients

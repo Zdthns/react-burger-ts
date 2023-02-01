@@ -13,38 +13,38 @@ type PropsType = {
 };
 
 const BurgerIngredients: FC<PropsType> = ({ openModal }) => {
-  const bunRef = React.useRef(null);
-  const sauceRef = React.useRef(null);
-  const mainRef = React.useRef(null);
+  const bunRef = React.useRef<HTMLLIElement>(null);
+  const sauceRef = React.useRef<HTMLLIElement>(null);
+  const mainRef = React.useRef<HTMLLIElement>(null);
   const [current, setCurrent] = React.useState("Булки");
 
-  function tabs(value) {
+  function tabs(value: string) {
     setCurrent(value);
     switch (value) {
       case "Булки": {
-        bunRef.current.scrollIntoView({ behavior: "smooth" });
+        bunRef.current?.scrollIntoView({ behavior: "smooth" });
         break;
       }
       case "Соусы": {
-        sauceRef.current.scrollIntoView({ behavior: "smooth" });
+        sauceRef.current?.scrollIntoView({ behavior: "smooth" });
         break;
       }
       case "Начинки": {
-        mainRef.current.scrollIntoView({ behavior: "smooth" });
+        mainRef.current?.scrollIntoView({ behavior: "smooth" });
         break;
       }
       default: {
-        bunRef.current.scrollIntoView({ behavior: "smooth" });
+        bunRef.current?.scrollIntoView({ behavior: "smooth" });
       }
     }
   }
 
-  const handleScroll = (evt) => {
+  const handleScroll = (evt: any) => {
     const container = evt.target;
-    const containerTop = container.getBoundingClientRect().top;
-    const bunTop = bunRef.current.getBoundingClientRect().top;
-    const sauceTop = sauceRef.current.getBoundingClientRect().top;
-    const mainTop = mainRef.current.getBoundingClientRect().top;
+    const containerTop = container?.getBoundingClientRect().top as number;
+    const bunTop = bunRef.current?.getBoundingClientRect().top as number;
+    const sauceTop = sauceRef.current?.getBoundingClientRect().top as number;
+    const mainTop = mainRef.current?.getBoundingClientRect().top as number;
     const offset = [
       { name: "Булки", value: Math.abs(containerTop - bunTop) },
       { name: "Соусы", value: Math.abs(containerTop - sauceTop) },

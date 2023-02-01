@@ -1,9 +1,8 @@
-import { React, useMemo, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import style from "./style.module.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppSelector } from "../../services/hook/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import { authUser } from "../../services/actions/user";
 import {
   wsUserConnectionStart,
@@ -13,9 +12,10 @@ import {
 } from "../../services/actions/wsConect";
 import IngredientInfo from "../feedComponents/IngreditntInfo/IngredientInfo";
 import { formatDate } from "../../utils/orders";
+import { wsUrl, wsUserUrl } from "../../utils/userApi";
 
 function OrderInfo() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   let { id } = useParams();
   const location = useLocation();
 
@@ -79,10 +79,10 @@ function OrderInfo() {
   useEffect(() => {
     if (!orderData) {
       if (isProfile) {
-        dispatch(wsUserConnectionStart());
+        dispatch(wsUserConnectionStart(wsUserUrl));
       }
       if (isFeed) {
-        dispatch(wsConnectionStart());
+        dispatch(wsConnectionStart(wsUrl));
       }
     }
 

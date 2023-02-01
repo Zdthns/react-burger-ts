@@ -10,7 +10,7 @@ import {
 
 import { useAppSelector } from "../../services/hook/hook";
 
-export default function Total({ openOrder }) {
+export default function Total({ openOrder }: { openOrder: () => void }) {
   const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
   );

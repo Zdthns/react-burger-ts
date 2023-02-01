@@ -46,7 +46,7 @@ export type TOrderDetails = {
   _id?: string;
   name: string;
   status?: string;
-  number?: number;
+  number?: string;
   createdAt?: string;
   updatedAt?: string;
   id?: string;

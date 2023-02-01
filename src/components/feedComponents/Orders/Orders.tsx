@@ -1,10 +1,10 @@
-import { React } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import style from "../style.module.css";
 import Order from "../../Order/Order";
+import { TOrderDetails } from "../../../utils/types/types";
 
-export function Orders({ data }) {
+export function Orders({ data }: { data: TOrderDetails[] }) {
   const location = useLocation();
   const orders = data;
 
