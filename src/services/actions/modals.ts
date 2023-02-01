@@ -1,4 +1,5 @@
-import { OPEN_INGREDIENT_DETAILS, CLOSE_INGREDIENT_DETAILS,  OPEN_ORDER_DETAILS,  CLOSE_ORDER_DETAILS, TActions } from "../../utils/types/constants";
+import { OPEN_INGREDIENT_DETAILS, CLOSE_INGREDIENT_DETAILS,  OPEN_ORDER_DETAILS,  CLOSE_ORDER_DETAILS } from "../../utils/types/constants";
+import { TActions } from "./actionType";
 
 
 

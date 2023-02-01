@@ -1,6 +1,6 @@
 import { getCookie } from "../../utils/cookie";
 
-export const socketMiddleware = (wsUrl, wsActions, isAuth = false) => {
+export const socketMiddleware = (wsUrl:string, wsActions:string, isAuth = false) => {
   return (store) => {
     let socket = null;
 

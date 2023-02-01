@@ -1,10 +1,10 @@
 import {
   ADD_INGREDIENT_TO_CONSTRUCTOR,
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  TActions,
 } from "../../utils/types/constants";
 
 import { Iingredient } from "../../utils/types/types";
+import { TActions } from "../actions/actionType";
 
 
 type TinitialStateConstructor = {

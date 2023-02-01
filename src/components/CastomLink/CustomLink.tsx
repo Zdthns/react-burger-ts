@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FC, ReactElement } from "react";
 import { Link, useMatch } from "react-router-dom";
 
-function CustomLink({ children: HTML, to: string, ...props }) {
+type PropsType = {
+  children: ReactElement;
+  to: string;
+  props: string[];
+};
+const CustomLink: FC<PropsType> = ({ children, to, ...props }) => {
   const match = useMatch({ path: to, end: true });
 
   return (
@@ -15,6 +20,6 @@ function CustomLink({ children: HTML, to: string, ...props }) {
       {children}
     </Link>
   );
-}
+};
 
 export default CustomLink;

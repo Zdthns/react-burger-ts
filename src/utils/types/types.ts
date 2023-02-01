@@ -1,9 +1,12 @@
+import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
+
+
 
 export type TFields ={
   name: string,
   placeholder: string,
-  type: string,
-  icon?: string | undefined,
+  type: string | undefined,
+  icon?: TICons | undefined,
 }
 
 export interface IUser{

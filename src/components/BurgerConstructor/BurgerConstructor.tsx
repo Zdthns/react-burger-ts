@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { FC, useMemo } from "react";
 import style from "./burgerConstructor.module.css";
 
 import PropTypes from "prop-types";
@@ -20,7 +20,11 @@ import {
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
 } from "../../utils/types/constants";
 
-function BurgerConstructor({ createOrder }) {
+type PropsType = {
+  createOrder: () => void;
+};
+
+const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAppSelector((store) => store.user);
@@ -126,7 +130,7 @@ function BurgerConstructor({ createOrder }) {
       <Total openOrder={openOrder} />
     </section>
   );
-}
+};
 BurgerConstructor.propTypes = {
   createOrder: PropTypes.func.isRequired,
 };

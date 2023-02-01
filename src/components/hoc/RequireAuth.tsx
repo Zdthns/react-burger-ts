@@ -1,8 +1,12 @@
-import React from "react";
+import React, { FC, ReactElement } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 import { useAppSelector } from "../../services/hook/hook";
 
-function RequireAuth({ children }) {
+type PropsType = {
+  children: ReactElement;
+};
+
+const RequireAuth: FC<PropsType> = ({ children }) => {
   const location = useLocation();
   const { isAuth } = useAppSelector((store) => store.user);
 
@@ -11,6 +15,6 @@ function RequireAuth({ children }) {
   }
 
   return children;
-}
+};
 
 export default RequireAuth;

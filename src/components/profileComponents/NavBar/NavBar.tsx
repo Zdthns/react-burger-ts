@@ -1,12 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import { logoutUser } from "../../../services/actions/user";
 import style from "./style.module.css";
-import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import CustomLink from "../../../utils/CustomLink";
+import CustomLink from "../../CastomLink/CustomLink";
+import { useAppDispatch } from "../../../services/hook/hook";
 
-function NavBar() {
-  const dispatch = useDispatch();
+const NavBar: FC = (): React.ReactElement => {
+  const dispatch = useAppDispatch();
   const logout = () => {
     dispatch(logoutUser());
   };
@@ -35,6 +35,6 @@ function NavBar() {
       </ul>
     </nav>
   );
-}
+};
 
 export default NavBar;

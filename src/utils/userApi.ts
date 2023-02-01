@@ -8,7 +8,6 @@ export const wsUserUrl:string = "wss://norma.nomoreparties.space/orders";
 export const checkResponse = (res: Response) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
-
 // регистрация
 export const getRegistrationUser = (data:IUser) =>
   fetch(`${api}/auth/register`, {
@@ -109,9 +108,10 @@ export const updateToken = () =>
     mode: "cors",
     cache: "no-cache",
     credentials: "same-origin",
+
     headers: {
       "Content-Type": "application/json",
-      Authorization: getCookie("token"),
+      Authorization: `${getCookie("token")}`,
     },
     body: JSON.stringify({
       token: localStorage.getItem("jwt"),

@@ -9,6 +9,9 @@ import { socketMiddleware } from "./middleware/socketMiddleware";
 import { wsUrl, wsUserUrl } from "../utils/userApi";
 import { wsActions, wsUserActions } from "./actions/wsConect";
 import { ActionCreator, Action } from "@reduxjs/toolkit";
+import { TActions } from "./actions/actionType.js";
+
+
 
 const composeEnhancers =
 //@ts-ignore
@@ -30,3 +33,6 @@ export const store = createStore(rootReducer, enhancer);
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;
 
+type TApplicationActions = TActions;
+export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TApplicationActions>
+>;

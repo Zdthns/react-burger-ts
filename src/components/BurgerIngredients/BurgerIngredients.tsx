@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 
 import style from "./burgerIngredients.module.css";
 
@@ -8,7 +8,11 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import CardBlock from "../CardBlock/CardBlock";
 
-function BurgerIngredients({ openModal }) {
+type PropsType = {
+  openModal: () => void;
+};
+
+const BurgerIngredients: FC<PropsType> = ({ openModal }) => {
   const bunRef = React.useRef(null);
   const sauceRef = React.useRef(null);
   const mainRef = React.useRef(null);
@@ -85,7 +89,7 @@ function BurgerIngredients({ openModal }) {
       </ul>
     </section>
   );
-}
+};
 
 BurgerIngredients.propTypes = {
   openModal: PropTypes.func.isRequired,

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import style from "./style.module.css";
 import PropTypes from "prop-types";
 import {
@@ -13,7 +13,7 @@ type PropTypes = {
   form: string[];
   onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
-  resetForm?: (evt: React.FormEvent<HTMLFormElement>) => void;
+  resetForm?: (() => void) | ((evt: SyntheticEvent) => void);
   buttonVisible?: boolean;
 };
 
