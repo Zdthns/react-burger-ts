@@ -1,21 +1,23 @@
 import { ADD_INGREDIENT_DATA, DELETE_INGREDIENT_DATA, OPEN_INGREDIENT_DETAILS, CLOSE_INGREDIENT_DETAILS, OPEN_ORDER_DETAILS, CLOSE_ORDER_DETAILS, ADD_INGREDIENT_TO_CONSTRUCTOR, DELETE_INGREDIENT_FROM_CONSTRUCTOR, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED } from "../../utils/types/constants"
 import { Iingredient } from "../../utils/types/types"
+import { TgetIngredients } from "./ingredients"
+import { wsConectType } from "./wsConect"
 
 
 export type TActions =
-| IopenIngredientDetailsModalsType
+ IopenIngredientDetailsModalsType
 | IcloseIngredientDetailsModalsType
 | IopenOrderDetailsModalsType
 | IcloseOrderDetailsModalsType
-| IaddIngredientToConstructor
 | IdeletIngredientFromConstructor
 | IaddIngredientToConstructor
-| IdeletIngredientFromConstructor
 | IaddIngredientData
 | IdeletIngredientData
 | IgetIngredientsRequest
 | IgetIngredientsSuccess
 | IgetIngredientsFailed
+|wsConectType
+|TgetIngredients
 
 
 

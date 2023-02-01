@@ -1,10 +1,10 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TActions } from "../../utils/types/constants";
 import { Iingredient } from "../../utils/types/types";
 import {
   ADD_INGREDIENT_DATA,
   DELETE_INGREDIENT_DATA,
 } from "../../utils/types/constants";
+import { TActions } from "../actions/actionType";
 
 type TinitialStateingredientDetails = {
   currentIngredient: Iingredient | null,

@@ -1,17 +1,28 @@
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 
 
-
-export type TFields ={
+export type TFields = {
   name: string,
   placeholder: string,
-  type: string | undefined,
+  type: string,
   icon?: TICons | undefined,
 }
 
-export interface IUser{
+export interface IUser {
   [name: string]: string;
 }
+//export type TUser = {
+//  name: string;
+//  email: string;
+//};
+
+export interface IingredientID {
+  _id: string;
+}
+export type TOrderNumber = {
+  [name: string]: string;
+};
+//детали ингредиента
 export interface Iingredient {
   _id: string;
   name: string;
@@ -28,20 +39,16 @@ export interface Iingredient {
   key?: string
   count?: number
 };
-export type TOrderData = {
-  name: string;
-  order: { number: number };
-  success: boolean;
-};
+
 
 export type TOrderDetails = {
   ingredients: Array<string>;
-  _id: string;
+  _id?: string;
   name: string;
-  status: string;
-  number: number;
-  createdAt: string;
-  updatedAt: string;
+  status?: string;
+  number?: number;
+  createdAt?: string;
+  updatedAt?: string;
   id?: string;
   count?: TCount
 };
@@ -49,6 +56,7 @@ export type TOrderDetails = {
 export type TCount = {
   [elem: string]: number
 }
+//данные с сервера
 export type TOrder = {
   success: boolean;
   orders: TOrderDetails[];
@@ -56,10 +64,6 @@ export type TOrder = {
   totalToday: number;
 };
 
-export type TUser = {
-  name: string;
-  email: string;
-};
 
 
 

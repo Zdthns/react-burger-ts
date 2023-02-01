@@ -1,4 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
+import { TOrderDetails } from "../../utils/types/types";
 import {
   GET_ORDER_REQUEST,
   GET_ORDER_FAILED,
@@ -9,7 +10,7 @@ type orderType ={
 }
 
 type initialStateType ={
-  order: {},
+  order: TOrderDetails,
   orderRequest: boolean,
   orderFailed: boolean,
 }

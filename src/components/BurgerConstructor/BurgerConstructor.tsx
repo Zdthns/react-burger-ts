@@ -9,8 +9,8 @@ import BurgerConstructorItem from "../BurgerConstructorItem/BurgerConstructorIte
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../services/hook/hook";
+
+import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import { useDrop } from "react-dnd";
 import { useNavigate } from "react-router-dom";
 import { wsGetMessage } from "../../services/actions/wsConect";
@@ -19,29 +19,28 @@ import {
   ADD_INGREDIENT_TO_CONSTRUCTOR,
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
 } from "../../utils/types/constants";
+import { Iingredient } from "../../utils/types/types";
 
 type PropsType = {
   createOrder: () => void;
 };
 
 const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAppSelector((store) => store.user);
-  const constructorIngredients = useAppSelector(
+  const constructorIngredients: Iingredient[] = useAppSelector(
     (store) => store.constructorReducer
   );
-  const orderBun = useMemo(() => {
-    constructorIngredients.find(
-      (item: { type: string }) => item.type === "bun"
-    );
+  const orderBun = useMemo<Iingredient>(() => {
+    constructorIngredients.find((item) => item.type === "bun");
   }, []);
 
-  const burgerBun = useMemo(() => {
+  const burgerBun = useMemo<Iingredient[]>(() => {
     constructorIngredients.filter((item) => item.type === "bun");
   }, []);
 
-  const orderToppings = useMemo(() => {
+  const orderToppings = useMemo<string[]>(() => {
     constructorIngredients
       .filter((item) => item.type !== "bun")
       .map((item) => item._id);
@@ -54,7 +53,7 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
 
   const [, dropTarget] = useDrop({
     accept: "ingredient",
-    drop(item) {
+    drop(item: Iingredient) {
       if (item.type === "bun") {
         for (let i = 0; i < 2; i++) {
           if (burgerBun.length > 0) {

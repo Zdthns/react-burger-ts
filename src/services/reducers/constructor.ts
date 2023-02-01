@@ -8,7 +8,7 @@ import { TActions } from "../actions/actionType";
 
 
 type TinitialStateConstructor = {
-  constructorIngredients:  ReadonlyArray<Iingredient>,
+  constructorIngredients:  Iingredient[],
 }
 
 const initialState: TinitialStateConstructor = {

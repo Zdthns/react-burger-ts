@@ -9,11 +9,8 @@ export function getCookie(name: string) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function setCookie(name:string, value: string | number | boolean, , props) {
-  props = {
-    path: "/",
-    ...props,
-  };
+export function setCookie(name: string, value: string | number | boolean, props?: Record<string, string | number | Date | boolean>) {
+  props = props || {};
 
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
@@ -22,7 +19,7 @@ export function setCookie(name:string, value: string | number | boolean, , props
     exp = props.expires = d;
   }
 
-  if (exp && exp.toUTCString) {
+  if (exp && exp instanceof Date && exp.toUTCString) {
     props.expires = exp.toUTCString();
   }
 
@@ -40,6 +37,6 @@ export function setCookie(name:string, value: string | number | boolean, , props
   document.cookie = updatedCookie;
 }
 
-export function deleteCookie(name) {
-  setCookie(name, null, { expires: -1 });
+export function deleteCookie(name: string) {
+  setCookie(name, '', { expires: -1 });
 }

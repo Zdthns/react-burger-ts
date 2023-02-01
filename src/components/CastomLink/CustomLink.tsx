@@ -1,10 +1,10 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactNode } from "react";
 import { Link, useMatch } from "react-router-dom";
 
 type PropsType = {
-  children: ReactElement;
+  children?: ReactNode;
   to: string;
-  props: string[];
+  props?: string[];
 };
 const CustomLink: FC<PropsType> = ({ children, to, ...props }) => {
   const match = useMatch({ path: to, end: true });

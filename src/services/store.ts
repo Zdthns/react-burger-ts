@@ -30,9 +30,8 @@ export const enhancer = composeEnhancers(
 
 export const store = createStore(rootReducer, enhancer);
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch;
 
-type TApplicationActions = TActions;
-export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TApplicationActions>
+export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TActions>
 >;

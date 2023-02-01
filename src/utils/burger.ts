@@ -1,10 +1,11 @@
 import { getCookie } from "./cookie";
+import { TOrderNumber } from "./types/types";
 import { api, checkResponse } from "./userApi";
 
 export const getIngredientsApi = () =>
   fetch(`${api}/ingredients`).then(checkResponse);
 
-export const getOrderNumber = (data) =>
+export const getOrderNumber = (data: TOrderNumber) =>
   fetch(`${api}/orders`, {
     method: "POST",
     headers: {
