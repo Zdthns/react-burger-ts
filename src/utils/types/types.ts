@@ -16,7 +16,7 @@ export type TForm = {
 export type TUser = {
   name?: string;
   login?: string;
-  email: string;
+  email?: string;
   password?: string
   token?: string | undefined;
 };

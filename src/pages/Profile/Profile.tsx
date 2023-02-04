@@ -7,13 +7,13 @@ import NavBar from "../../components/profileComponents/NavBar/NavBar";
 import OrderPage from "../OrdersPage/OrderPage";
 import Caption from "../../components/profileComponents/Caption/Caption";
 import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
-import { TFields } from "../../utils/types/types";
+import { TFields, TUser } from "../../utils/types/types";
 
 function Profile() {
   const { user } = useAppSelector((store) => store.user);
   const [buttonVisible, setButtonVisible] = useState(false);
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<TUser>({
     name: user.name,
     login: user.email,
     password: "",

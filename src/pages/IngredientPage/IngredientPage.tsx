@@ -6,14 +6,14 @@ import IngredientDetails from "../../components/IngredientDetails/IngredientDeta
 import { useAppSelector } from "../../services/hook/hook";
 
 const IngredientPage = () => {
-  const { id } = useParams();
+  //const { id } = useParams();
   const ingredients = useAppSelector(
     (store) => store.ingredientDetails.currentIngredient
   );
 
   return (
     <div className={style.container}>
-      {ingredients && <IngredientDetails ingredient={ingredients} />}
+      {ingredients && <IngredientDetails />}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../services/hook/hook";
 
-function IngredientDetails(ingredient) {
+function IngredientDetails() {
   const { id } = useParams();
   const ingredient = useAppSelector((store) =>
     store.ingredients.ingredients.find((item) => item._id === id)
