@@ -33,17 +33,21 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
     (store) => store.constructorReducer.constructorIngredients
   );
   const orderBun = useMemo(() => {
-    constructorIngredients.find((item) => item.type === "bun");
+    constructorIngredients.find(
+      (item: { type: string }) => item.type === "bun"
+    );
   }, []);
 
   const burgerBun = useMemo(() => {
-    constructorIngredients.filter((item) => item.type === "bun");
+    constructorIngredients.filter(
+      (item: { type: string }) => item.type === "bun"
+    );
   }, []);
 
   const orderToppings = useMemo(() => {
     constructorIngredients
-      .filter((item) => item.type !== "bun")
-      .map((item) => item._id);
+      .filter((item: { type: string }) => item.type !== "bun")
+      .map((item: { _id: any }) => item._id);
   }, []);
 
   const orderData = useMemo(() => {
