@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-function Preloader() {
+const Preloader: FC = () => {
   return <div>Preloader</div>;
-}
+};
 
 export default Preloader;

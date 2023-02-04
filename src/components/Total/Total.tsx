@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import style from "./total.module.css";
 
 import PropTypes from "prop-types";
@@ -10,7 +10,10 @@ import {
 
 import { useAppSelector } from "../../services/hook/hook";
 
-export default function Total({ openOrder }: { openOrder: () => void }) {
+type PropsType = {
+  openOrder: () => void;
+};
+const Total: FC<PropsType> = ({ openOrder }) => {
   const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
   );
@@ -38,8 +41,5 @@ export default function Total({ openOrder }: { openOrder: () => void }) {
       </Button>
     </div>
   );
-}
-
-Total.propTypes = {
-  openOrder: PropTypes.func.isRequired,
 };
+export default Total;

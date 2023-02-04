@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { FC, SyntheticEvent, useState } from "react";
 import style from "./style.module.css";
 import Form from "../../components/Form/Form";
 import { getUpdateUser } from "../../services/actions/user.js";
@@ -9,7 +9,7 @@ import Caption from "../../components/profileComponents/Caption/Caption";
 import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import { TFields, TUser } from "../../utils/types/types";
 
-function Profile() {
+const Profile: FC = () => {
   const { user } = useAppSelector((store) => store.user);
   const [buttonVisible, setButtonVisible] = useState(false);
 
@@ -80,5 +80,5 @@ function Profile() {
       </div>
     </section>
   );
-}
+};
 export default Profile;

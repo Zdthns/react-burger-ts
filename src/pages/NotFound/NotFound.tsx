@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 
 import pageNotFound from "../../images/1587631265_2.jpg";
 
-export const NotFound = () => {
+const NotFound: FC = () => {
   return (
     <div>
       <div>

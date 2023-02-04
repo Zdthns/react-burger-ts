@@ -6,11 +6,11 @@ import { FC, useMemo } from "react";
 import Ingredient from "../feedComponents/ingredient/Ingredient";
 
 type PropTypes = {
-  status: string;
-  orderNumber: string;
-  orderCreateTime: string;
-  burgerName: string;
-  ingredients: string[];
+  status: string | undefined;
+  orderNumber: string | undefined;
+  orderCreateTime: string | undefined;
+  burgerName: string | undefined;
+  ingredients: Array<string>;
 };
 
 const Order: FC<PropTypes> = ({

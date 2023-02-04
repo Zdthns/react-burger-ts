@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import style from "./style.module.css";
 import Orders from "../../components/feedComponents/Orders/Orders";
@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 import { wsUrl } from "../../utils/userApi.js";
 import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 
-function Feed() {
+const Feed: FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -36,6 +36,6 @@ function Feed() {
       <OrdersStatus />
     </section>
   );
-}
+};
 
 export default Feed;

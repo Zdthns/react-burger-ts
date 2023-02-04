@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { useParams } from "react-router";
 import { useAppSelector } from "../../services/hook/hook";
 import style from "./orderDetails.module.css";
 import PropTypes from "prop-types";
 import img from "../../images/done.png";
 
-function OrderDetails() {
+const OrderDetails: FC = () => {
   const orderNumber = useAppSelector((state) => state.order.order.number);
   return (
     <section className={`${style.container}`}>
@@ -26,7 +26,7 @@ function OrderDetails() {
       </p>
     </section>
   );
-}
+};
 
 export default OrderDetails;
 

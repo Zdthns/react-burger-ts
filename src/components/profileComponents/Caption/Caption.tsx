@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import style from "./style.module.css";
 import { useLocation } from "react-router-dom";
 
-function Caption() {
+const Caption: FC = () => {
   const location = useLocation();
   const isOrders = location.pathname.includes("orders");
 
@@ -14,6 +14,6 @@ function Caption() {
     }
   }
   return <p className={style.profile_caption}>{textCaption(isOrders)}</p>;
-}
+};
 
 export default Caption;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import Form from "../../components/Form/Form";
@@ -6,7 +6,7 @@ import { loginUser } from "../../services/actions/user";
 import { useAppDispatch } from "../../services/hook/hook";
 import { TFields, TForm } from "../../utils/types/types";
 
-function LoginPage() {
+const LoginPage: FC = () => {
   const [form, setForm] = React.useState<TForm>({ email: "", password: "" });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -53,5 +53,5 @@ function LoginPage() {
       </div>
     </section>
   );
-}
+};
 export default LoginPage;

@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, FC } from "react";
 import style from "./style.module.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -14,7 +14,7 @@ import IngredientInfo from "../feedComponents/IngreditntInfo/IngredientInfo";
 import { formatDate } from "../../utils/orders";
 import { wsUrl, wsUserUrl } from "../../utils/userApi";
 
-function OrderInfo() {
+const OrderInfo: FC = () => {
   const dispatch = useAppDispatch();
   let { id } = useParams();
   const location = useLocation();
@@ -137,6 +137,6 @@ function OrderInfo() {
       </div>
     </>
   );
-}
+};
 
 export default OrderInfo;

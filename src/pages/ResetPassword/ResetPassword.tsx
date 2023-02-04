@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Form from "../../components/Form/Form";
@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../services/hook/hook";
 import { TFields, TForm } from "../../utils/types/types";
 //import { tokenToString } from "typescript";
 
-function ResetPasswordPage() {
+const ResetPasswordPage: FC = () => {
   const location = useLocation();
   const fromPage = location.state?.from?.pathname;
   const [token, setToken] = useState<string>("");
@@ -69,6 +69,6 @@ function ResetPasswordPage() {
       </p>
     </section>
   );
-}
+};
 
 export default ResetPasswordPage;

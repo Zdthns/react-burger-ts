@@ -3,8 +3,13 @@ import { useLocation, Link } from "react-router-dom";
 import style from "../style.module.css";
 import Order from "../../Order/Order";
 import { TOrderDetails } from "../../../utils/types/types";
+import { FC } from "react";
 
-export function Orders({ data }: { data: TOrderDetails[] }) {
+type PropsType = {
+  data: TOrderDetails[];
+};
+
+const Orders: FC<PropsType> = ({ data }) => {
   const location = useLocation();
   const orders = data;
 
@@ -32,5 +37,5 @@ export function Orders({ data }: { data: TOrderDetails[] }) {
       })}
     </>
   );
-}
+};
 export default Orders;

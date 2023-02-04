@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import style from "./ingredientDetails.module.css";
 import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../services/hook/hook";
 
-function IngredientDetails() {
+const IngredientDetails: FC = () => {
   const { id } = useParams();
   const ingredient = useAppSelector((store) =>
     store.ingredients.ingredients.find((item) => item._id === id)
@@ -44,6 +44,6 @@ function IngredientDetails() {
       )}
     </>
   );
-}
+};
 
 export default IngredientDetails;

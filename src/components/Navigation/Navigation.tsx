@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import style from "./navigation.module.css";
 import {
@@ -8,7 +8,7 @@ import {
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-const Navigation = () => {
+const Navigation: FC = () => {
   const setActive = ({ isActive }: { isActive: boolean }) =>
     isActive ? style.active : style.text;
   const location = useLocation();

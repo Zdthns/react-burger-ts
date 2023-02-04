@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import style from "./style.module.css";
 
 import { useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ import Orders from "../../components/feedComponents/Orders/Orders";
 import NavBar from "../../components/profileComponents/NavBar/NavBar";
 import Caption from "../../components/profileComponents/Caption/Caption";
 
-function OrderPage() {
+const OrderPage: FC = () => {
   const dispatch = useAppDispatch();
   const token = getCookie("token");
   useEffect(() => {
@@ -41,6 +41,6 @@ function OrderPage() {
       </ul>
     </section>
   );
-}
+};
 
 export default OrderPage;

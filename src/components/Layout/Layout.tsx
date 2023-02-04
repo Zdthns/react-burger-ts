@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import AppHeader from "../AppHeader/AppHeader";
 import { Outlet } from "react-router-dom";
 
-function Layout() {
+const Layout: FC = () => {
   return (
     <>
       <AppHeader />
@@ -11,6 +11,6 @@ function Layout() {
       </main>
     </>
   );
-}
+};
 
 export default Layout;
