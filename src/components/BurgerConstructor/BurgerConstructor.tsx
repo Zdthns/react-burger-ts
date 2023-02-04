@@ -30,7 +30,7 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
   const navigate = useNavigate();
   const { isAuth } = useAppSelector((store) => store.user);
   const constructorIngredients = useAppSelector(
-    (store) => store.constructorReducer.
+    (store) => store.constructorReducer.constructorIngredients
   );
   const orderBun = useMemo(() => {
     constructorIngredients.find((item) => item.type === "bun");

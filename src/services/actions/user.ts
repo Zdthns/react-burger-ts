@@ -16,7 +16,7 @@ import { TUser, TForm } from "../../utils/types/types.js";
 
 // запрос на востановление пароля
 
-export const requestCode: AppThunk = (email: string) => {
+export const requestCode = (email: string) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: FORGOT_CODE_REQUEST });
     getPasswordReset(email).then((res) => {
@@ -67,7 +67,7 @@ export const refreshToken: AppThunk = () => {
   };
 };
 
-export const loginUser: AppThunk = (data: IUser) => {
+export const loginUser: AppThunk = (data: TUser) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: LOGIN_USER_REQUEST });
     getUserLogin(data)
@@ -95,14 +95,14 @@ export const logoutUser: AppThunk = () => {
       .then((res) => {
         if (res.success) {
           localStorage.removeItem("jwt");
-          setCookie("token", null, { expires: -1 });
+          setCookie("token", ' ', { expires: -1 });
           dispatch({ type: LOGOUT_USER_SUCCESS });
         }
       })
       .catch(() => dispatch({ type: LOGOUT_USER_ERROR }));
   };
 };
-export const getUpdateUser: AppThunk = (data: IUser) => {
+export const getUpdateUser: AppThunk = (data: TUser) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: UPDATE_USER_REQUEST });
     updateUser(data)

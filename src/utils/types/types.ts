@@ -1,4 +1,5 @@
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
+import { checkResponse } from "../userApi";
 
 export type TFields = {
   name: string,
@@ -68,6 +69,29 @@ export type TOrder = {
   totalToday: number;
 };
 
+// стандартный ответ от сервера
+export type defaulResponseType = {
+  success: boolean;
+  message: string;
+};
 
+// обновление токена
+export type refreshTokenResponseType = {
+  success: boolean;
+  accessToken: string;
+  refreshToken: string;
+};
+// универсальные шапка и тело запроса
+type universalType = {
+  method?: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+  headers: {
+    'Content-Type': string;
+    Authorization?: string;
+  };
+  body?: string;
+};
+//универсальный запрос
 
-
+export const universalRequestType = (url: string, options?: universalType) => {
+  return fetch(url, options).then(checkResponse)
+}
