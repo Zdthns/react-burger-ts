@@ -55,7 +55,7 @@ export const getUserLogout = () =>
   }).then(checkResponse);
 
 // сброс пароля
-export const getPasswordReset = (email: string): Response => {
+export const getPasswordReset = (email: string) => {
   fetch(`${api}/password-reset`, {
     method: "POST",
     headers: {
@@ -66,7 +66,6 @@ export const getPasswordReset = (email: string): Response => {
     }),
   }).then(checkResponse);
 };
-//в разработке
 
 export function setNewPassword(password: TForm, token: string) {
   return fetch(`${api}/password-reset/reset`, {

@@ -1,12 +1,11 @@
 import { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
 import { getCookie } from "../../utils/cookie";
-import {  wsActionsTypeApplication } from "../actions/wsConect";
+import { wsActionsTypeApplication } from "../actions/wsConect";
 import { AppDispatch, RootState } from "../store";
 
-export const socketMiddleware = (wsUrl:string, wsActions:wsActionsTypeApplication, isAuth = false): Middleware => {
+export const socketMiddleware = (url: string, wsActions: wsActionsTypeApplication, isAuth = false): Middleware => {
   return (store: MiddlewareAPI<AppDispatch, RootState>) => {
     let socket: WebSocket | null = null;
-
     const {
       wsInit,
       onMessage,
@@ -23,10 +22,10 @@ export const socketMiddleware = (wsUrl:string, wsActions:wsActionsTypeApplicatio
 
       if (type === wsInit) {
         if (!isAuth) {
-          socket = new WebSocket(wsUrl);
+          socket = new WebSocket(url);
         } else {
-          const accessToken = getCookie("token").split("Bearer ")[1];
-          socket = new WebSocket(`${wsUrl}?token=${accessToken}`);
+          const accessToken = getCookie("token")?.split("Bearer ")[1];
+          socket = new WebSocket(`${url}?token=${accessToken}`);
         }
       }
 
