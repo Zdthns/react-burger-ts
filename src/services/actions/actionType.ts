@@ -18,9 +18,19 @@ export type TActions =
   | IgetIngredientsFailed
   | wsConectType
   | TgetIngredients
+  | addIngredientToConstructor
+  | deleteIngredientToConstructor
 
 
+  export interface addIngredientToConstructor {
+    readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR,
+    readonly payload: Iingredient
+  }
 
+  export interface deleteIngredientToConstructor {
+    readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
+    readonly payload: string
+  }
 interface IaddIngredientData {
   readonly type: typeof ADD_INGREDIENT_DATA,
   readonly item: Iingredient,
