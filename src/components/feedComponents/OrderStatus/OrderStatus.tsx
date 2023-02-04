@@ -1,9 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { useAppSelector } from "../../../services/hook/hook";
+import { TOrderDetails } from "../../../utils/types/types";
 
 import style from "../style.module.css";
 
-function OrdersStatus() {
+const OrdersStatus: FC = () => {
   const { total, totalToday, orders } = useAppSelector(
     (store) => store.wsReducer.messages
   );
@@ -16,7 +17,7 @@ function OrdersStatus() {
     return order.status !== "done";
   });
 
-  const firstThirtyItems = (arr) => {
+  const firstThirtyItems = (arr: TOrderDetails[]) => {
     if (arr.length > 10) {
       return arr.slice(0, 20);
     } else {
@@ -32,7 +33,7 @@ function OrdersStatus() {
         <div className={style.status_lists}>
           <h3 className="text text_type_main-medium pb-6">Готовы:</h3>
           <ul className={style.done_list}>
-            {firstThirtyItems(ordersDoneArr).map((order) => (
+            {firstThirtyItems(ordersDoneArr)?.map((order) => (
               <li className="text text_type_digits-default" key={order._id}>
                 {order.number}
               </li>
@@ -42,7 +43,7 @@ function OrdersStatus() {
         <div className={style.status_lists}>
           <h3 className="text text_type_main-medium pb-6">В работе:</h3>
           <ul className={style.inprocess_list}>
-            {firstThirtyItems(ordersInProcessArr).map((order) => (
+            {firstThirtyItems(ordersInProcessArr)?.map((order) => (
               <li className="text text_type_digits-default" key={order._id}>
                 {order.number}
               </li>
@@ -64,5 +65,5 @@ function OrdersStatus() {
       </div>
     </section>
   );
-}
+};
 export default OrdersStatus;
