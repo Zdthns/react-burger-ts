@@ -1,5 +1,4 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { FC } from "react";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import style from "./ingredientCard.module.css";
@@ -7,13 +6,18 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAppSelector } from "../../services/hook/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import PropTypes from "prop-types";
-import ingredientsTypes from "../../utils/types.js";
+import { Iingredient } from "../../utils/types/types";
 
-function IngredientCard({ elem, onClick }) {
+type PropTypes = {
+  elem: Iingredient;
+  onClick: (event: any) => void;
+};
+
+const IngredientCard: FC<PropTypes> = ({ elem, onClick }) => {
   const location = useLocation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const ingredientId = elem._id;
   const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
@@ -50,11 +54,6 @@ function IngredientCard({ elem, onClick }) {
       <p className={`${style.name} text_type_main-default`}>{elem.name}</p>
     </Link>
   );
-}
-
-IngredientCard.propTypes = {
-  elem: PropTypes.oneOfType([PropTypes.object, ingredientsTypes]).isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default IngredientCard;

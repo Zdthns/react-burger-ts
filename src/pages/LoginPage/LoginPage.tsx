@@ -4,9 +4,10 @@ import style from "./style.module.css";
 import Form from "../../components/Form/Form";
 import { loginUser } from "../../services/actions/user";
 import { useAppDispatch } from "../../services/hook/hook";
+import { TFields, TForm } from "../../utils/types/types";
 
 function LoginPage() {
-  const [form, setForm] = React.useState({ email: "", password: "" });
+  const [form, setForm] = React.useState<TForm>({ email: "", password: "" });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -14,16 +15,16 @@ function LoginPage() {
 
   const fromPage = location.state?.from?.pathname || "/";
 
-  const fields = [
+  const fields: TFields[] = [
     { name: "email", placeholder: "e-mail", type: "text" },
     { name: "password", placeholder: "пароль", type: "password" },
   ];
 
-  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     dispatch(loginUser(form));
   };

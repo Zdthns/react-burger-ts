@@ -6,18 +6,20 @@ import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import style from "../style.module.css";
 import { resetPassword } from "../../services/actions/user.js";
 import { useAppDispatch } from "../../services/hook/hook";
+import { TFields, TForm } from "../../utils/types/types";
+//import { tokenToString } from "typescript";
 
 function ResetPasswordPage() {
   const location = useLocation();
   const fromPage = location.state?.from?.pathname;
-
-  const [form, setForm] = useState({
+  const [token, setToken] = useState<string>("");
+  const [form, setForm] = useState<TForm>({
     login: "",
     password: "",
   });
   const dispatch = useAppDispatch();
 
-  const fields = [
+  const fields: TFields[] = [
     {
       name: "password",
       placeholder: "Введите новый пароль",
@@ -28,7 +30,7 @@ function ResetPasswordPage() {
       name: "cod",
       placeholder: "Введите код из письма",
       type: "text",
-      icon: "",
+      icon: undefined,
     },
   ];
 
@@ -36,9 +38,9 @@ function ResetPasswordPage() {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt: { preventDefault: () => void }) => {
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    dispatch(resetPassword(form));
+    dispatch(resetPassword(form, token));
   };
 
   function handlerResetPassword() {

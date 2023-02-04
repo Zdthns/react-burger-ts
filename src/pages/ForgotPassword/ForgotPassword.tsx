@@ -7,7 +7,7 @@ import { TFields } from "../../utils/types/types";
 import { useAppDispatch } from "../../services/hook/hook";
 
 const ForgotPassword: React.FC = () => {
-  const [form, setForm] = React.useState({ email: "" });
+  const [form, setForm] = useState({ email: "" });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,7 +20,7 @@ const ForgotPassword: React.FC = () => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(requestCode(form.email));
     return navigate("/resetpassword", { state: { from: location } });

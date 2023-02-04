@@ -31,8 +31,8 @@ import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import OrderInfo from "../OrderInfo/OrderInfo";
 import OrderPage from "../../pages/OrdersPage/OrderPage";
-import { Iingredient, TOrderData } from "../../utils/types/types";
-import RegistrPage from "../../pages/RegistrPage/RegistrPage";
+import { Iingredient, TOrder, TOrderNumber } from "../../utils/types/types";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 
 function App() {
   const { isAuth } = useAppSelector((store) => store.user);
@@ -88,7 +88,7 @@ function App() {
     dispatch(getIngredients());
   }, [dispatch, refreshTokenData, isAuth, cookie, updateTokenSuccess]);
 
-  const createOrder = (orderData: TOrderData) => {
+  const createOrder = (orderData: TOrderNumber) => {
     dispatch(getOrder(orderData));
     openOrderModal();
   };
@@ -143,7 +143,7 @@ function App() {
           <Route path="/ingredients/:id" element={<IngredientDetails />} />
           <Route path="/feed/" element={<Feed />} />
           <Route path="/feed/:id" element={<OrderInfo />} />
-          <Route path="/registr" element={<RegistrPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
@@ -154,11 +154,7 @@ function App() {
           <Route
             path="/ingredients/:id"
             element={
-              <Modal
-                item={currentIngredient}
-                title="Детали ингредиента"
-                onClose={closeModal}
-              >
+              <Modal title="Детали ингредиента" onClose={closeModal}>
                 <IngredientDetails />
               </Modal>
             }
@@ -166,7 +162,7 @@ function App() {
           <Route
             path="/feed/:id"
             element={
-              <Modal item=" text" title=" " onClose={closeModal}>
+              <Modal title=" " onClose={closeModal}>
                 <OrderInfo />
               </Modal>
             }
@@ -175,7 +171,7 @@ function App() {
             path="/profile/orders/:id"
             element={
               <ProtectedRoute>
-                <Modal item="text" title=" " onClose={closeModal}>
+                <Modal title=" " onClose={closeModal}>
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

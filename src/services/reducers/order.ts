@@ -1,20 +1,18 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TOrderDetails } from "../../utils/types/types";
-import {
-  GET_ORDER_REQUEST,
-  GET_ORDER_FAILED,
-  GET_ORDER_SUCCESS,
-} from "../actions/order";
-type orderType ={
+import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
+
+
+
+type orderType = {
   number: null | number
 }
 
-type initialStateType ={
-  order: TOrderDetails,
+type initialStateType = {
+  order: orderType,
   orderRequest: boolean,
   orderFailed: boolean,
 }
-const initialState = {
+const initialState: initialStateType = {
   order: {
     number: null,
   },
@@ -22,7 +20,7 @@ const initialState = {
   orderFailed: false,
 };
 
-const orderReducer = (state = initialState, action:PayloadAction) => {
+const orderReducer = (state = initialState, action: PayloadAction) => {
   switch (action.type) {
     case GET_ORDER_REQUEST: {
       return {
@@ -34,7 +32,7 @@ const orderReducer = (state = initialState, action:PayloadAction) => {
     case GET_ORDER_SUCCESS: {
       return {
         ...state,
-        order: action.order,
+        order: action.payload,
         orderRequest: false,
       };
     }

@@ -1,8 +1,8 @@
-import { React, useEffect } from "react";
+import { useEffect } from "react";
 import style from "./style.module.css";
 
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../services/hook/hook";
+import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import {
   wsUserConnectionStart,
   wsUserConnectionClose,
@@ -15,7 +15,7 @@ import NavBar from "../../components/profileComponents/NavBar/NavBar";
 import Caption from "../../components/profileComponents/Caption/Caption";
 
 function OrderPage() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const token = getCookie("token");
   useEffect(() => {
     dispatch(

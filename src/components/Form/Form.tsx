@@ -5,15 +5,15 @@ import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { TFields } from "../../utils/types/types";
+import { TFields, TForm } from "../../utils/types/types";
 
 type PropTypes = {
   fields: TFields[];
   buttonText: string;
-  form: Array<string>;
-  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
-  resetForm?: (() => void) | ((evt: SyntheticEvent) => void);
+  form: TForm;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  resetForm?: (() => void) | ((e: SyntheticEvent) => void);
   buttonVisible?: boolean;
 };
 

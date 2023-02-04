@@ -7,9 +7,10 @@ import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import CardBlock from "../CardBlock/CardBlock";
+import { Iingredient } from "../../utils/types/types";
 
 type PropsType = {
-  openModal: () => void;
+  openModal: (item: Iingredient) => void;
 };
 
 const BurgerIngredients: FC<PropsType> = ({ openModal }) => {

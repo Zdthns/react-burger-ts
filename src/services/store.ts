@@ -14,10 +14,10 @@ import { TActions } from "./actions/actionType.js";
 
 
 const composeEnhancers =
-//@ts-ignore
+  //@ts-ignore
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//@ts-ignore
-  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    //@ts-ignore
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
 export const enhancer = composeEnhancers(
@@ -30,7 +30,7 @@ export const enhancer = composeEnhancers(
 
 export const store = createStore(rootReducer, enhancer);
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch;
 
 export type AppThunk<TReturn = void> = ActionCreator<ThunkAction<TReturn, Action, RootState, TActions>

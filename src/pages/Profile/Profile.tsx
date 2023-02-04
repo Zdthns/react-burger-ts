@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import style from "./style.module.css";
 import Form from "../../components/Form/Form";
 import { getUpdateUser } from "../../services/actions/user.js";
@@ -7,20 +7,20 @@ import NavBar from "../../components/profileComponents/NavBar/NavBar";
 import OrderPage from "../OrdersPage/OrderPage";
 import Caption from "../../components/profileComponents/Caption/Caption";
 import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
-import { IUser } from "../../utils/types/types";
+import { TFields } from "../../utils/types/types";
 
 function Profile() {
   const { user } = useAppSelector((store) => store.user);
   const [buttonVisible, setButtonVisible] = useState(false);
 
-  const [form, setForm] = useState<IUser>({
+  const [form, setForm] = useState({
     name: user.name,
     login: user.email,
     password: "",
   });
   const dispatch = useAppDispatch();
 
-  const fields = [
+  const fields: TFields[] = [
     { name: "name", placeholder: "имя", type: "text", icon: "EditIcon" },
     { name: "login", placeholder: "логин", type: "text", icon: "EditIcon" },
     {
@@ -31,21 +31,25 @@ function Profile() {
     },
   ];
 
-  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
     setButtonVisible(true);
   };
 
-  const onSubmit = (evt: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     dispatch(getUpdateUser(form));
   };
 
-  function resetForm(evt: React.ChangeEvent<HTMLFormElement>) {
-    evt.preventDefault();
-    setForm({ ...user, name: user.name, login: user.email, password: "" });
+  const resetForm: (() => void) | ((e: SyntheticEvent) => void) = () => {
+    setForm({
+      ...user,
+      name: user.name,
+      login: user.email,
+      password: user.password,
+    });
     setButtonVisible(false);
-  }
+  };
   return (
     <section className={style.section}>
       <div className={style.profile_wrapper}>

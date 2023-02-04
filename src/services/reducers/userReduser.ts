@@ -1,4 +1,4 @@
-import { IUser, TUser } from "../../utils/types/types";
+import { TUser } from "../../utils/types/types";
 import {
   FORGOT_CODE_REQUEST,
   FORGOT_CODE_ERROR,
@@ -29,7 +29,7 @@ import {
 
 
 export type initialStateUserType = {
-  user: IUser | null,
+  user: TUser | null,
   isAuth: boolean,
 
   // востановление пароля

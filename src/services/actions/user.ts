@@ -12,25 +12,25 @@ import {
   updateToken,
   setNewPassword,
 } from "../../utils/userApi.js";
-import { IUser } from "../../utils/types/types.js";
+import { TUser, TForm } from "../../utils/types/types.js";
 
 // запрос на востановление пароля
 
-export const requestCode = (email:string) => {
+export const requestCode = (email: string) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: FORGOT_CODE_REQUEST });
     getPasswordReset(email).then((res) => {
-        if (res && res.success) {
-          dispatch({ type: FORGOT_CODE_SUCCESS });
-        }
-      })
+      if (res && res.success) {
+        dispatch({ type: FORGOT_CODE_SUCCESS });
+      }
+    })
       .catch(() => dispatch({ type: FORGOT_CODE_ERROR }));
   };
 };
 
 // регистрация
 
-export const registrationUser = (data: IUser) => {
+export const registrationUser = (data: TUser) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: REGISTER_USER_REQUEST });
     getRegistrationUser(data)
@@ -67,7 +67,7 @@ export const refreshToken = () => {
   };
 };
 
-export const loginUser = (data:IUser) => {
+export const loginUser = (data: IUser) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: LOGIN_USER_REQUEST });
     getUserLogin(data)
@@ -148,8 +148,8 @@ export const authUser = () => {
   };
 };
 
-export const requestPasswordReset = (email:string) => {
-  return function (dispatch:AppDispatch) {
+export const requestPasswordReset = (email: string) => {
+  return function (dispatch: AppDispatch) {
     dispatch({ type: FORGOT_PASSWORD_REQUEST });
     getPasswordReset(email)
       .then((res) => {
@@ -161,10 +161,10 @@ export const requestPasswordReset = (email:string) => {
       .catch(() => dispatch({ type: FORGOT_PASSWORD_ERROR }));
   };
 };
-export const resetPassword = (password: string, token: string) => {
+export const resetPassword = (form: TForm, token: string) => {
   return function (dispatch: AppDispatch) {
     dispatch({ type: FORGOT_PASSWORD_REQUEST });
-    setNewPassword(password, token)
+    setNewPassword(form, token)
       .then(() => {
         dispatch({ type: FORGOT_PASSWORD_SUCCESS });
       })

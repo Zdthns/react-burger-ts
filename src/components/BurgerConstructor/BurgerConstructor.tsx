@@ -19,28 +19,28 @@ import {
   ADD_INGREDIENT_TO_CONSTRUCTOR,
   DELETE_INGREDIENT_FROM_CONSTRUCTOR,
 } from "../../utils/types/constants";
-import { Iingredient } from "../../utils/types/types";
+import { Iingredient, TOrderNumber } from "../../utils/types/types";
 
 type PropsType = {
-  createOrder: () => void;
+  createOrder: (orderData: TOrderNumber) => void;
 };
 
 const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isAuth } = useAppSelector((store) => store.user);
-  const constructorIngredients: Iingredient[] = useAppSelector(
-    (store) => store.constructorReducer
+  const constructorIngredients = useAppSelector(
+    (store) => store.constructorReducer.
   );
-  const orderBun = useMemo<Iingredient>(() => {
+  const orderBun = useMemo(() => {
     constructorIngredients.find((item) => item.type === "bun");
   }, []);
 
-  const burgerBun = useMemo<Iingredient[]>(() => {
+  const burgerBun = useMemo(() => {
     constructorIngredients.filter((item) => item.type === "bun");
   }, []);
 
-  const orderToppings = useMemo<string[]>(() => {
+  const orderToppings = useMemo(() => {
     constructorIngredients
       .filter((item) => item.type !== "bun")
       .map((item) => item._id);

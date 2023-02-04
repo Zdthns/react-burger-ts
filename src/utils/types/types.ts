@@ -1,20 +1,24 @@
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 
-
 export type TFields = {
   name: string,
   placeholder: string,
-  type: string,
-  icon?: TICons | undefined,
+  type: "text" | "password" | "email" | undefined,
+  icon?: keyof TICons | undefined,
 }
-
-export interface IUser {
+export type TForm = {
   [name: string]: string;
 }
-//export type TUser = {
-//  name: string;
-//  email: string;
-//};
+//export interface IUser {
+//  [name: string]: string;
+//}
+export type TUser = {
+  name?: string;
+  login?: string;
+  email: string;
+  password?: string
+  token?: string | undefined;
+};
 
 export interface IingredientID {
   _id: string;

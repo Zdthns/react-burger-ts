@@ -5,61 +5,66 @@ import { wsConectType } from "./wsConect"
 
 
 export type TActions =
- IopenIngredientDetailsModalsType
-| IcloseIngredientDetailsModalsType
-| IopenOrderDetailsModalsType
-| IcloseOrderDetailsModalsType
-| IdeletIngredientFromConstructor
-| IaddIngredientToConstructor
-| IaddIngredientData
-| IdeletIngredientData
-| IgetIngredientsRequest
-| IgetIngredientsSuccess
-| IgetIngredientsFailed
-|wsConectType
-|TgetIngredients
+  IopenIngredientDetailsModalsType
+  | IcloseIngredientDetailsModalsType
+  | IopenOrderDetailsModalsType
+  | IcloseOrderDetailsModalsType
+  | IdeletIngredientFromConstructor
+  | IaddIngredientToConstructor
+  | IaddIngredientData
+  | IdeletIngredientData
+  | IgetIngredientsRequest
+  | IgetIngredientsSuccess
+  | IgetIngredientsFailed
+  | wsConectType
+  | TgetIngredients
 
 
 
-interface IaddIngredientData{
-readonly type: typeof ADD_INGREDIENT_DATA,
-readonly item: Iingredient,
+interface IaddIngredientData {
+  readonly type: typeof ADD_INGREDIENT_DATA,
+  readonly item: Iingredient,
 }
 
-interface IdeletIngredientData{
-readonly type: typeof DELETE_INGREDIENT_DATA,
-readonly item: null
+interface IdeletIngredientData {
+  readonly type: typeof DELETE_INGREDIENT_DATA,
+  readonly item: null
 }
-
+//modal
 interface IopenIngredientDetailsModalsType {
-readonly type: typeof OPEN_INGREDIENT_DETAILS
+  readonly type: typeof OPEN_INGREDIENT_DETAILS
 };
 interface IcloseIngredientDetailsModalsType {
-readonly type: typeof CLOSE_INGREDIENT_DETAILS,
+  readonly type: typeof CLOSE_INGREDIENT_DETAILS,
 };
 interface IopenOrderDetailsModalsType {
-readonly type: typeof OPEN_ORDER_DETAILS,
+  readonly type: typeof OPEN_ORDER_DETAILS,
 };
-interface IcloseOrderDetailsModalsType  {
-readonly  type: typeof CLOSE_ORDER_DETAILS
+interface IcloseOrderDetailsModalsType {
+  readonly type: typeof CLOSE_ORDER_DETAILS
 }
 
-interface IaddIngredientToConstructor{
-readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR
-readonly payload:Iingredient[]
+interface IaddIngredientToConstructor {
+  readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR
+  readonly payload: TdraggedIngredient,
 };
+
+type TdraggedIngredient = {
+  item: Iingredient[],
+  key: string
+}
 interface IdeletIngredientFromConstructor {
-readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-readonly payload: string
+  readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
+  readonly payload: string
 };
 
 interface IgetIngredientsRequest {
-readonly  type: typeof GET_INGREDIENTS_REQUEST
+  readonly type: typeof GET_INGREDIENTS_REQUEST
 }
 interface IgetIngredientsSuccess {
-readonly  type: typeof GET_INGREDIENTS_SUCCESS
-ingredients: Iingredient[]
+  readonly type: typeof GET_INGREDIENTS_SUCCESS
+  ingredients: Iingredient[]
 }
 interface IgetIngredientsFailed {
-readonly  type: typeof GET_INGREDIENTS_FAILED
+  readonly type: typeof GET_INGREDIENTS_FAILED
 }

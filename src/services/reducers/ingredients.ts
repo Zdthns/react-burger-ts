@@ -7,19 +7,20 @@ import {
 } from "../../utils/types/constants";
 import { TActions } from "../actions/actionType";
 
-export type  initialStateType = {
+
+export type initialStateType = {
   ingredients: Iingredient[],
   ingredientsRequest: boolean,
   ingredientsFailed: boolean,
 };
 
-const initialState:initialStateType = {
+const initialState: initialStateType = {
   ingredients: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
 };
 
-const ingredientsReducer = (state = initialState, action:TActions) => {
+const ingredientsReducer = (state = initialState, action: TActions) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {

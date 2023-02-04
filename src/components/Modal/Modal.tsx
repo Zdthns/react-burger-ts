@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import ReactDOM from "react-dom";
 
 import style from "./modal.module.css";
@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 
 const popup = document.getElementById("modals") as HTMLElement;
 type PropsType = {
-  children: ReactElement;
+  children?: ReactNode;
   title: string;
   onClose: () => void;
 };

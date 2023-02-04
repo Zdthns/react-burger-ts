@@ -1,13 +1,12 @@
 import React, { FC, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import style from "../style.module.css";
 import { useAppDispatch, useAppSelector } from "../../services/hook/hook";
 import Form from "../../components/Form/Form";
-import { registrationUser } from "../../services/actions/user.js";
+import { registrationUser } from "../../services/actions/user";
 import { TFields } from "../../utils/types/types";
 
-function RegistrPage() {
+const RegisterPage: React.FC = () => {
   const [form, setForm] = React.useState({ name: "", email: "", password: "" });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -19,11 +18,11 @@ function RegistrPage() {
     { name: "password", placeholder: "пароль", type: "password" },
   ];
 
-  const onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const onSubmit = (evt: React.ChangeEvent<HTMLFormElement>) => {
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     dispatch(registrationUser({ ...form }));
   };
@@ -48,6 +47,6 @@ function RegistrPage() {
       </p>
     </section>
   );
-}
+};
 
-export default RegistrPage;
+export default RegisterPage;

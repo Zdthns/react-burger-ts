@@ -8,14 +8,14 @@ import { TActions } from "../actions/actionType";
 
 
 type TinitialStateConstructor = {
-  constructorIngredients:  Iingredient[],
+  constructorIngredients: Iingredient[],
 }
 
 const initialState: TinitialStateConstructor = {
-  constructorIngredients:[],
+  constructorIngredients: [],
 };
 
-function constructorReducer(state = initialState, action:TActions ) {
+function constructorReducer(state = initialState, action: TActions) {
   switch (action.type) {
     case ADD_INGREDIENT_TO_CONSTRUCTOR: {
       return {
