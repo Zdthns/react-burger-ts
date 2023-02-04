@@ -34,7 +34,7 @@ import OrderPage from "../../pages/OrdersPage/OrderPage";
 import { Iingredient, TOrder, TOrderNumber } from "../../utils/types/types";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 
-function App() {
+const App: FC = () => {
   const { isAuth } = useAppSelector((store) => store.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -186,6 +186,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default App;
