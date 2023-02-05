@@ -112,7 +112,7 @@ export interface IwsUserConnectionSuccessType {
 };
 export interface IwsUserGetMessageType {
   readonly type: typeof WS_USER_GET_MESSAGE;
-  readonly payload: TOrderDetails;
+  readonly payload: string;
 };
 export interface IwsUserSendMessageType {
   readonly type: typeof WS_USER_SEND_MESSAGE;
@@ -129,7 +129,7 @@ export interface IwsUserConnectionCloseType {
   readonly type: typeof WS_USER_CONNECTION_CLOSE;
 };
 
-export const wsConnectionStart = (url: IwsConnectionStartType) => {
+export const wsConnectionStart = (url: string): IwsConnectionStartType => {
   return {
     type: WS_CONNECTION_START,
     url: url,
@@ -142,7 +142,7 @@ export const wsConnectionSuccess = (): IwsConnectionSuccessType => {
   };
 };
 
-export const wsConnectionError = (payload: IwsConnectionErrorType) => {
+export const wsConnectionError = (payload: any): IwsConnectionErrorType => {
   return {
     type: WS_CONNECTION_ERROR,
     payload: payload
@@ -160,14 +160,14 @@ export const wsConnectionClose = (): IwsConnectionCloseType => {
   };
 };
 
-export const wsGetMessage = (payload: IwsGetMessageType) => {
+export const wsGetMessage = (payload: string[]): IwsGetMessageType => {
   return {
     type: WS_GET_MESSAGE,
     payload: payload,
   };
 };
 
-export const wsUserConnectionStart = (payload: IwsUserConnectionStartType) => {
+export const wsUserConnectionStart = (payload: { url: string }): IwsUserConnectionStartType => {
   return {
     type: WS_USER_CONNECTION_START,
     payload: payload
@@ -180,21 +180,21 @@ export const wsUserConnectionSuccess = (): IwsUserConnectionSuccessType => {
   };
 };
 
-export const wsUserGetMessage = (payload: IwsUserGetMessageType) => {
+export const wsUserGetMessage = (payload: string): IwsUserGetMessageType => {
   return {
     type: WS_USER_GET_MESSAGE,
     payload: payload
   };
 };
 
-export const wsUserSendMessage = (payload: IwsUserSendMessageType) => {
+export const wsUserSendMessage = (payload: TOrder): IwsUserSendMessageType => {
 
   return {
     type: WS_USER_SEND_MESSAGE,
     payload: payload
   };
 };
-export const wsUserConnectionError = (payload: IwsUserConnectionErrorType) => {
+export const wsUserConnectionError = (payload: string): IwsUserConnectionErrorType => {
   return {
     type: WS_USER_CONNECTION_ERROR,
     payload: payload
