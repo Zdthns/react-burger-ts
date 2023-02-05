@@ -102,7 +102,7 @@ interface IUpdateTokenRequest {
 }
 interface IUpdateTokenSuccess {
   readonly type: typeof UPDATE_TOKEN_SUCCESS;
-  readonly user: TUser;
+  readonly user: string;
 }
 interface IUpdateTokenError {
   readonly type: typeof UPDATE_TOKEN_ERROR;
@@ -165,10 +165,10 @@ export const updateUserSuccess = (user: TUser): IUpdateUserSuccess => ({
 const updateUserError = (): IUpdateUserError => ({ type: UPDATE_USER_ERROR })
 // токен
 const updateTokenRequest = (): IUpdateTokenRequest => ({ type: UPDATE_TOKEN_REQUEST })
-const updateTokenSuccess = (user: IUpdateTokenSuccess) => {
-  type: UPDATE_TOKEN_SUCCESS;
-  user: user;
-}
+const updateTokenSuccess = (user: string): IUpdateTokenSuccess => ({
+  type: UPDATE_TOKEN_SUCCESS,
+  user: user
+})
 const updateTokenError = (): IUpdateTokenError => ({ type: UPDATE_TOKEN_ERROR })
 const ILoginUserRequest = (): ILoginUserRequest => ({ type: LOGIN_USER_REQUEST })
 const loginUserSuccess = (user: TUser): ILoginUserSuccess => ({
@@ -223,7 +223,7 @@ export const refreshToken: AppThunk = () => {
         if (res.success) {
           setCookie("token", res.accessToken, { expires: 1200 });
           localStorage.setItem("jwt", res.refreshToken);
-          dispatch(updateTokenSuccess(res));
+          dispatch(updateTokenSuccess(res.user));
         }
       })
       .catch(() => dispatch(updateTokenError()));
@@ -256,7 +256,7 @@ export const logoutUser: AppThunk = () => {
         if (res.success) {
           localStorage.removeItem("jwt");
           setCookie("token", ' ', { expires: -1 });
-          dispatch(logoutSuccess);
+          dispatch(logoutSuccess());
         }
       })
       .catch(() => dispatch(logoutError()));
@@ -267,7 +267,7 @@ export const getUpdateUser: AppThunk = (data: TUser) => {
     dispatch({ type: UPDATE_USER_REQUEST });
     updateUser(data)
       .then((res) => {
-        dispatch(updateUserSuccess(res.user));
+        dispatch(updateUserSuccess(user));
       })
       .catch(() => {
         if (localStorage.getItem("jwt")) {

@@ -28,16 +28,16 @@ const detOrderFailed = (): IdetOrderFailed => ({ type: GET_ORDER_FAILED })
 
 export const getOrder = (orderData: TOrderNumber) => {
   return function (dispatch: AppDispatch) {
-    dispatch(detOrderRequest);
+    dispatch(detOrderRequest());
     getOrderNumber(orderData)
       .then((res) => {
         if (res) {
-          dispatch(detOrderSuccess);
+          dispatch(detOrderSuccess(res));
         } else {
-          dispatch(detOrderFailed);
+          dispatch(detOrderFailed());
         }
       })
 
-      .catch(() => dispatch(detOrderFailed));
+      .catch(() => dispatch(detOrderFailed()));
   };
 }

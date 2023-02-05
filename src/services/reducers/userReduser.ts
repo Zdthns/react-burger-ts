@@ -129,7 +129,7 @@ const userReducer = (state: initialStateUserType = initialState, action: TAction
     case FORGOT_CODE_SUCCESS: {
       return {
         ...state,
-        user: action.user,
+        user: action,
         isCodeRequest: false,
         isCodeFailed: false,
         isReplacePassword: true,
