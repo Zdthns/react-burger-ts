@@ -19,37 +19,25 @@ interface IdetOrderFailed {
   readonly type: typeof GET_ORDER_FAILED,
 }
 
-const detOrderRequest = (): IdetOrderRequest => {
-  type: GET_ORDER_REQUEST
-}
-const detOrderSuccess = () => {
-  type: GET_ORDER_SUCCESS
-  order: Response,
-}
-const detOrderFailed = () => {
-  type: GET_ORDER_FAILED
-}
+const detOrderRequest = (): IdetOrderRequest => ({ type: GET_ORDER_REQUEST })
+const detOrderSuccess = (res: Response): IdetOrderSuccess => ({
+  type: GET_ORDER_SUCCESS,
+  order: res
+})
+const detOrderFailed = (): IdetOrderFailed => ({ type: GET_ORDER_FAILED })
 
 export const getOrder = (orderData: TOrderNumber) => {
   return function (dispatch: AppDispatch) {
-    dispatch({
-      type: GET_ORDER_REQUEST,
-    });
-
+    dispatch(detOrderRequest);
     getOrderNumber(orderData)
       .then((res) => {
         if (res) {
-          dispatch({
-            type: GET_ORDER_SUCCESS,
-            order: res,
-          });
+          dispatch(detOrderSuccess);
         } else {
-          dispatch({
-            type: GET_ORDER_FAILED,
-          });
+          dispatch(detOrderFailed);
         }
       })
 
-      .catch(() => dispatch({ type: GET_ORDER_FAILED }));
+      .catch(() => dispatch(detOrderFailed));
   };
 }

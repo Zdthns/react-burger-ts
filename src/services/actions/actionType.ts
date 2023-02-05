@@ -3,20 +3,18 @@ import { Iingredient } from "../../utils/types/types"
 import { constructor } from "./constructor"
 import { TgetIngredients } from "./ingredients"
 import { modal } from "./modals"
+import { order } from "./order"
+import { userRegistr } from "./user"
 import { wsConectType } from "./wsConect"
 
 
 export type TActions =
   modal
-  | constructor
-  | IaddIngredientData
-  | IdeletIngredientData
-  | IgetIngredientsRequest
-  | IgetIngredientsSuccess
-  | IgetIngredientsFailed
-  | wsConectType
   | TgetIngredients
-
+  | constructor
+  | order
+  | userRegistr
+  | wsConectType
 
 
 

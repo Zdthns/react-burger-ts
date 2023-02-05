@@ -64,19 +64,16 @@ export function deleteIngredienData(): deleteIngredienDataType {
 
 export const getIngredients = () => {
   return function (dispatch: AppDispatch) {
-    dispatch(getIngredientsRequest);
+    dispatch(getIngredientsRequest());
     getIngredientsApi()
       .then((res) => {
         if (res && res.success) {
-          dispatch({
-            type: GET_INGREDIENTS_SUCCESS,
-            ingredients: res.data,
-          });
+          dispatch(getIngredientsSuccess(res.payload));
         } else {
-          dispatch(getIngredientsFailed);
+          dispatch(getIngredientsFailed());
         }
       })
-      .catch(() => dispatch(getIngredientsFailed));
+      .catch(() => dispatch(getIngredientsFailed()));
   };
 }
 

@@ -13,18 +13,182 @@ import {
   setNewPassword,
 } from "../../utils/userApi.js";
 import { TUser, TForm } from "../../utils/types/types.js";
+import { PayloadAction } from "@reduxjs/toolkit";
+export type userRegistr =
+  IForgotCodeRequest
+  | IForgotCodeSuccess
+  | IForgotCodeError
+  | IResetPasswordRequest
+  | IResetPasswordSuccess
+  | IResetPasswordFailed
+  | IsRegisterUserRequest
+  | IRegisterUserSuccess
+  | IRegisterUserError
+  | IGetUserRequest
+  | IGetUserSuccess
+  | IGetUserError
+  | IUpdateUserRequest
+  | IUpdateTokenRequest
+  | IUpdateTokenSuccess
+  | IUpdateTokenError
+  | ILoginUserRequest
+  | ILoginUserSuccess
+  | ILoginUserError
+  | ILogoutRequest
+  | ILogoutSuccess
+  | ILogoutError
+  | IUpdateUserError
+
+
+interface IForgotCodeRequest {
+  readonly type: typeof FORGOT_CODE_REQUEST;
+}
+// запрос выполнился успешно
+interface IForgotCodeSuccess {
+  readonly type: typeof FORGOT_CODE_SUCCESS;
+}
+// запрос выполнился с ошибкой
+interface IForgotCodeError {
+  readonly type: typeof FORGOT_CODE_ERROR;
+}
+// запрос вып
+export interface IResetPasswordRequest {
+  readonly type: typeof FORGOT_PASSWORD_REQUEST;
+}
+export interface IResetPasswordSuccess {
+  readonly type: typeof FORGOT_PASSWORD_SUCCESS;
+}
+export interface IResetPasswordFailed {
+  readonly type: typeof FORGOT_PASSWORD_ERROR;
+}
+// Регистрация
+interface IsRegisterUserRequest {
+  readonly type: typeof REGISTER_USER_REQUEST
+}
+interface IRegisterUserSuccess {
+  readonly type: typeof REGISTER_USER_SUCCESS;
+  readonly user: TUser;
+}
+interface IRegisterUserError {
+  readonly type: typeof REGISTER_USER_ERROR
+}
+// запрос данных о пользователе
+interface IGetUserRequest {
+  readonly type: typeof GET_USER_REQUEST;
+}
+interface IGetUserSuccess {
+  readonly type: typeof GET_USER_SUCCESS;
+  readonly user: TUser;
+}
+
+interface IGetUserError {
+  readonly type: typeof GET_USER_ERROR;
+}
+// изменение данных о пользователя
+interface IUpdateUserRequest {
+  readonly type: typeof UPDATE_USER_REQUEST;
+}
+export interface IUpdateUserSuccess {
+  readonly type: typeof UPDATE_USER_SUCCESS;
+  readonly user: TUser;
+}
+export interface IUpdateUserError {
+  readonly type: typeof UPDATE_USER_ERROR;
+}
+// токен
+interface IUpdateTokenRequest {
+  readonly type: typeof UPDATE_TOKEN_REQUEST;
+}
+interface IUpdateTokenSuccess {
+  readonly type: typeof UPDATE_TOKEN_SUCCESS;
+  readonly user: TUser;
+}
+interface IUpdateTokenError {
+  readonly type: typeof UPDATE_TOKEN_ERROR;
+}
+
+interface ILoginUserRequest {
+  readonly type: typeof LOGIN_USER_REQUEST;
+}
+interface ILoginUserSuccess {
+  readonly type: typeof LOGIN_USER_SUCCESS;
+  readonly user: TUser;
+}
+interface ILoginUserError {
+  readonly type: typeof LOGIN_USER_ERROR;
+}
+// выход
+interface ILogoutRequest {
+  readonly type: typeof LOGOUT_USER_REQUEST;
+}
+interface ILogoutSuccess {
+  readonly type: typeof LOGOUT_USER_SUCCESS;
+}
+interface ILogoutError {
+  readonly type: typeof LOGOUT_USER_ERROR;
+}
+const forgotCodeRequest = (): IForgotCodeRequest => ({ type: FORGOT_CODE_REQUEST })
+// запрос выполнился успешно
+const forgotCodeSuccess = (): IForgotCodeSuccess => ({ type: FORGOT_CODE_SUCCESS })
+// запрос выполнился с ошибкой
+const forgotCodeError = (): IForgotCodeError => ({ type: FORGOT_CODE_ERROR })
+// запрос вып
+export const resetPasswordRequest = (): IResetPasswordRequest => ({ type: FORGOT_PASSWORD_REQUEST })
+export const resetPasswordSuccess = (): IResetPasswordSuccess => ({ type: FORGOT_PASSWORD_SUCCESS })
+export const resetPasswordFailed = (): IResetPasswordFailed => ({ type: FORGOT_PASSWORD_ERROR })
+// Регистрация
+const isRegisterUserRequest = (): IsRegisterUserRequest => ({ type: REGISTER_USER_REQUEST })
+const registerUserSuccess = (action: PayloadAction<IRegisterUserSuccess>) => {
+  type: REGISTER_USER_SUCCESS;
+  user: action.payload;
+}
+const registerUserError = (): IRegisterUserError => ({ type: REGISTER_USER_ERROR })
+// запрос данных о пользователе
+const getUserRequest = (): IGetUserRequest => ({ type: GET_USER_REQUEST })
+const getUserSuccess = (action: PayloadAction<IGetUserSuccess>) => {
+  type: GET_USER_SUCCESS;
+  user: action.payload;
+}
+const getUserError = (): IGetUserError => ({ type: GET_USER_ERROR })
+// изменение данных о пользователя
+const updateUserRequest = () => {
+  type: UPDATE_USER_REQUEST;
+}
+export const updateUserSuccess = (action: PayloadAction<IUpdateUserRequest>) => {
+  type: UPDATE_USER_SUCCESS;
+  user: action.payload;
+}
+const updateUserError = (): IUpdateUserError => ({ type: UPDATE_USER_ERROR })
+// токен
+const updateTokenRequest = (): IUpdateTokenRequest => ({ type: UPDATE_TOKEN_REQUEST })
+const updateTokenSuccess = (action: PayloadAction<IUpdateTokenSuccess>) => {
+  type: UPDATE_TOKEN_SUCCESS;
+  user: action.payload;
+}
+const updateTokenError = (): IUpdateTokenError => ({ type: UPDATE_TOKEN_ERROR })
+const ILoginUserRequest = (): ILoginUserRequest => ({ type: LOGIN_USER_REQUEST })
+const loginUserSuccess = (action: PayloadAction<ILoginUserSuccess>) => ({
+  type: LOGIN_USER_SUCCESS,
+  user: action.payload
+})
+const loginUserError = (): ILoginUserError => ({ type: LOGIN_USER_ERROR })
+// выход
+const logoutRequest = (): ILogoutRequest => ({ type: LOGOUT_USER_REQUEST })
+const logoutSuccess = (): ILogoutSuccess => ({ type: LOGOUT_USER_SUCCESS })
+const logoutError = (): ILogoutError => ({ type: LOGOUT_USER_ERROR })
+
 
 // запрос на востановление пароля
 
 export const requestCode = (email: string) => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: FORGOT_CODE_REQUEST });
+    dispatch(forgotCodeRequest());
     getPasswordReset(email).then((res) => {
       if (res && res.success) {
-        dispatch({ type: FORGOT_CODE_SUCCESS });
+        dispatch(forgotCodeSuccess());
       }
     })
-      .catch(() => dispatch({ type: FORGOT_CODE_ERROR }));
+      .catch(() => dispatch(forgotCodeError()));
   };
 };
 
@@ -32,57 +196,49 @@ export const requestCode = (email: string) => {
 
 export const registrationUser: AppThunk = (data: TUser) => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: REGISTER_USER_REQUEST });
+    dispatch(isRegisterUserRequest());
     getRegistrationUser(data)
       .then((res) => {
         if (res.success) {
           setCookie("token", res.accessToken, { expires: 1200 });
           localStorage.setItem("jwt", res.refreshToken);
-          dispatch({
-            type: REGISTER_USER_SUCCESS,
-            user: res.user,
-          });
+          dispatch(
+            registerUserSuccess(res.user));
         }
       })
-      .catch(() => dispatch({ type: REGISTER_USER_ERROR }));
+      .catch(() => dispatch(registerUserError()));
   };
 };
 
 //обновление токена
 export const refreshToken: AppThunk = () => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: UPDATE_TOKEN_REQUEST });
+    dispatch(updateTokenRequest());
     updateToken()
       .then((res) => {
         if (res.success) {
           setCookie("token", res.accessToken, { expires: 1200 });
           localStorage.setItem("jwt", res.refreshToken);
-          dispatch({
-            type: UPDATE_TOKEN_SUCCESS,
-            user: res.user,
-          });
+          dispatch(updateTokenSuccess(res.user));
         }
       })
-      .catch(() => dispatch({ type: UPDATE_TOKEN_ERROR }));
+      .catch(() => dispatch(updateTokenError()));
   };
 };
 
 export const loginUser: AppThunk = (data: TUser) => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: LOGIN_USER_REQUEST });
+    dispatch(ILoginUserRequest());
     getUserLogin(data)
       .then((res) => {
         if (res.success) {
           setCookie("token", res.accessToken, { expires: 1200 });
           localStorage.setItem("jwt", res.refreshToken);
-          dispatch({
-            type: LOGIN_USER_SUCCESS,
-            user: res.user,
-          });
+          dispatch(loginUserSuccess(res.user));
         }
       })
       .catch((err) => {
-        dispatch({ type: LOGIN_USER_ERROR });
+        dispatch(loginUserError());
       });
   };
 };
@@ -90,16 +246,16 @@ export const loginUser: AppThunk = (data: TUser) => {
 
 export const logoutUser: AppThunk = () => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: LOGOUT_USER_REQUEST });
+    dispatch(logoutRequest());
     getUserLogout()
       .then((res) => {
         if (res.success) {
           localStorage.removeItem("jwt");
           setCookie("token", ' ', { expires: -1 });
-          dispatch({ type: LOGOUT_USER_SUCCESS });
+          dispatch(logoutSuccess);
         }
       })
-      .catch(() => dispatch({ type: LOGOUT_USER_ERROR }));
+      .catch(() => dispatch(logoutError()));
   };
 };
 export const getUpdateUser: AppThunk = (data: TUser) => {
@@ -107,42 +263,33 @@ export const getUpdateUser: AppThunk = (data: TUser) => {
     dispatch({ type: UPDATE_USER_REQUEST });
     updateUser(data)
       .then((res) => {
-        dispatch({
-          type: UPDATE_USER_SUCCESS,
-          user: res.user,
-        });
+        dispatch(updateUserSuccess(res.user));
       })
       .catch(() => {
         if (localStorage.getItem("jwt")) {
           dispatch(refreshToken());
           dispatch(updateUser(data));
         } else {
-          dispatch({ type: UPDATE_USER_ERROR });
+          dispatch(updateUserError());
         }
       });
   };
 };
 export const authUser: AppThunk = () => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: GET_USER_REQUEST });
+    dispatch(getUserRequest());
     getUser()
       .then((res) => {
-        dispatch({
-          type: GET_USER_SUCCESS,
-          user: res.user,
-        });
+        dispatch(getUserSuccess(res.user));
       })
       .catch(() => {
         if (localStorage.getItem("jwt")) {
           dispatch(refreshToken());
           getUser().then((res) => {
-            dispatch({
-              type: GET_USER_SUCCESS,
-              user: res.user,
-            });
+            dispatch(getUserSuccess(res.user));
           });
         } else {
-          dispatch({ type: GET_USER_ERROR });
+          dispatch(getUserError());
         }
       });
   };
@@ -150,25 +297,25 @@ export const authUser: AppThunk = () => {
 
 export const requestPasswordReset: AppThunk = (email: string) => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: FORGOT_PASSWORD_REQUEST });
+    dispatch(resetPasswordRequest());
     getPasswordReset(email)
       .then((res) => {
         console.log(res);
         if (res && res.success) {
-          dispatch({ type: FORGOT_PASSWORD_SUCCESS });
+          dispatch(resetPasswordSuccess());
         }
       })
-      .catch(() => dispatch({ type: FORGOT_PASSWORD_ERROR }));
+      .catch(() => dispatch(resetPasswordFailed()));
   };
 };
 export const resetPassword: AppThunk = (form: TForm, token: string) => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: FORGOT_PASSWORD_REQUEST });
+    dispatch(resetPasswordRequest());
     setNewPassword(form, token)
       .then(() => {
-        dispatch({ type: FORGOT_PASSWORD_SUCCESS });
+        dispatch(resetPasswordSuccess());
       })
-      .catch(() => dispatch({ type: FORGOT_PASSWORD_ERROR }));
+      .catch(() => dispatch(resetPasswordFailed()));
   };
 };
 
