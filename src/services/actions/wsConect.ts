@@ -129,10 +129,10 @@ export interface IwsUserConnectionCloseType {
   readonly type: typeof WS_USER_CONNECTION_CLOSE;
 };
 
-export const wsConnectionStart = (action: PayloadAction<IwsConnectionStartType>) => {
+export const wsConnectionStart = (url: IwsConnectionStartType) => {
   return {
     type: WS_CONNECTION_START,
-    url: action.payload,
+    url: url,
   };
 };
 
@@ -142,10 +142,10 @@ export const wsConnectionSuccess = (): IwsConnectionSuccessType => {
   };
 };
 
-export const wsConnectionError = (action: PayloadAction<IwsConnectionErrorType>): IwsConnectionErrorType => {
+export const wsConnectionError = (payload: IwsConnectionErrorType) => {
   return {
     type: WS_CONNECTION_ERROR,
-    payload: action.payload
+    payload: payload
   };
 };
 
@@ -160,17 +160,17 @@ export const wsConnectionClose = (): IwsConnectionCloseType => {
   };
 };
 
-export const wsGetMessage = (action: PayloadAction<IwsGetMessageType>) => {
+export const wsGetMessage = (payload: IwsGetMessageType) => {
   return {
     type: WS_GET_MESSAGE,
-    payload: action.payload,
+    payload: payload,
   };
 };
 
-export const wsUserConnectionStart = (action: PayloadAction<IwsUserConnectionStartType>) => {
+export const wsUserConnectionStart = (payload: IwsUserConnectionStartType) => {
   return {
     type: WS_USER_CONNECTION_START,
-    payload: action.payload
+    payload: payload
   };
 };
 
@@ -180,24 +180,24 @@ export const wsUserConnectionSuccess = (): IwsUserConnectionSuccessType => {
   };
 };
 
-export const wsUserGetMessage = (action: PayloadAction<IwsUserGetMessageType>) => {
+export const wsUserGetMessage = (payload: IwsUserGetMessageType) => {
   return {
     type: WS_USER_GET_MESSAGE,
-    payload: action.payload
+    payload: payload
   };
 };
 
-export const wsUserSendMessage = (action: PayloadAction<IwsUserSendMessageType>) => {
+export const wsUserSendMessage = (payload: IwsUserSendMessageType) => {
 
   return {
     type: WS_USER_SEND_MESSAGE,
-    payload: action.payload
+    payload: payload
   };
 };
-export const wsUserConnectionError = (action: PayloadAction<IwsUserConnectionErrorType>) => {
+export const wsUserConnectionError = (payload: IwsUserConnectionErrorType) => {
   return {
     type: WS_USER_CONNECTION_ERROR,
-    payload: action.payload
+    payload: payload
   };
 };
 export const wsUserConnectionClosed = (): IwsUserConnectionClosedType => {

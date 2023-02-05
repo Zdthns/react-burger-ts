@@ -20,7 +20,7 @@ const initialState: initialStateType = {
   ingredientsFailed: false,
 };
 
-const ingredientsReducer = (state = initialState, action: TActions) => {
+const ingredientsReducer = (state = initialState, action: PayloadAction<TActions>) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
@@ -32,7 +32,7 @@ const ingredientsReducer = (state = initialState, action: TActions) => {
     case GET_INGREDIENTS_SUCCESS: {
       return {
         ...state,
-        ingredients: action.ingredients,
+        ingredients: action.payload,
         ingredientsRequest: false,
         ingredientsFailed: false,
       };

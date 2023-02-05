@@ -38,10 +38,10 @@ const getIngredientsRequest = (): TgetIngredientsRequest => {
     type: GET_INGREDIENTS_REQUEST
   }
 }
-const getIngredientsSuccess = (action: PayloadAction<TgetIngredientsSuccess>) => {
+const getIngredientsSuccess = (item: TgetIngredientsSuccess) => {
   return {
     type: GET_INGREDIENTS_SUCCESS,
-    ingredients: action.payload,
+    ingredients: item,
   }
 }
 const getIngredientsFailed = (): TgetIngredientsError => {
@@ -49,10 +49,10 @@ const getIngredientsFailed = (): TgetIngredientsError => {
     type: GET_INGREDIENTS_FAILED
   }
 }
-export const addIngredientData = (action: PayloadAction<addIngredientDataType>) => {
+export const addIngredientData = (item: addIngredientDataType) => {
   return {
     type: ADD_INGREDIENT_DATA,
-    item: action.payload,
+    item: item,
   };
 }
 export function deleteIngredienData(): deleteIngredienDataType {

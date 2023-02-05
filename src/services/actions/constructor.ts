@@ -1,5 +1,5 @@
 import { ADD_INGREDIENT_TO_CONSTRUCTOR, DELETE_INGREDIENT_FROM_CONSTRUCTOR } from "../../utils/types/constants"
-import { Iingredient } from "../../utils/types/types"
+import { Iingredient, TOrderNumber } from "../../utils/types/types"
 
 export type constructor =
   IaddIngredientToConstructor
@@ -19,7 +19,7 @@ export type TdraggedIngredient = {
 }
 export interface IdeletIngredientFromConstructor {
   readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  readonly id: string
+  readonly id: TOrderNumber
 };
 
 

@@ -14,12 +14,12 @@ const initialState: TinitialStateingredientDetails = {
   currentIngredient: null,
 };
 
-const ingredientDetailsReducer = (state = initialState, action: TActions) => {
+const ingredientDetailsReducer = (state = initialState, action: PayloadAction<TActions>) => {
   switch (action.type) {
     case ADD_INGREDIENT_DATA: {
       return {
         ...state,
-        currentIngredient: action.item,
+        currentIngredient: action.payload,
       };
     }
     case DELETE_INGREDIENT_DATA: {

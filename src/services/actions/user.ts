@@ -138,38 +138,38 @@ export const resetPasswordSuccess = (): IResetPasswordSuccess => ({ type: FORGOT
 export const resetPasswordFailed = (): IResetPasswordFailed => ({ type: FORGOT_PASSWORD_ERROR })
 // Регистрация
 const isRegisterUserRequest = (): IsRegisterUserRequest => ({ type: REGISTER_USER_REQUEST })
-const registerUserSuccess = (action: PayloadAction<IRegisterUserSuccess>) => {
+const registerUserSuccess = (user: IRegisterUserSuccess) => {
   type: REGISTER_USER_SUCCESS;
-  user: action.payload;
+  user: user;
 }
 const registerUserError = (): IRegisterUserError => ({ type: REGISTER_USER_ERROR })
 // запрос данных о пользователе
 const getUserRequest = (): IGetUserRequest => ({ type: GET_USER_REQUEST })
-const getUserSuccess = (action: PayloadAction<IGetUserSuccess>) => {
+const getUserSuccess = (user: IGetUserSuccess) => {
   type: GET_USER_SUCCESS;
-  user: action.payload;
+  user: user;
 }
 const getUserError = (): IGetUserError => ({ type: GET_USER_ERROR })
 // изменение данных о пользователя
 const updateUserRequest = () => {
   type: UPDATE_USER_REQUEST;
 }
-export const updateUserSuccess = (action: PayloadAction<IUpdateUserRequest>) => {
+export const updateUserSuccess = (user: IUpdateUserRequest) => {
   type: UPDATE_USER_SUCCESS;
-  user: action.payload;
+  user: user;
 }
 const updateUserError = (): IUpdateUserError => ({ type: UPDATE_USER_ERROR })
 // токен
 const updateTokenRequest = (): IUpdateTokenRequest => ({ type: UPDATE_TOKEN_REQUEST })
-const updateTokenSuccess = (action: PayloadAction<IUpdateTokenSuccess>) => {
+const updateTokenSuccess = (user: IUpdateTokenSuccess) => {
   type: UPDATE_TOKEN_SUCCESS;
-  user: action.payload;
+  user: user;
 }
 const updateTokenError = (): IUpdateTokenError => ({ type: UPDATE_TOKEN_ERROR })
 const ILoginUserRequest = (): ILoginUserRequest => ({ type: LOGIN_USER_REQUEST })
-const loginUserSuccess = (action: PayloadAction<ILoginUserSuccess>) => ({
+const loginUserSuccess = (user: ILoginUserSuccess) => ({
   type: LOGIN_USER_SUCCESS,
-  user: action.payload
+  user: user
 })
 const loginUserError = (): ILoginUserError => ({ type: LOGIN_USER_ERROR })
 // выход

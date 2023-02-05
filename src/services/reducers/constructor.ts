@@ -6,6 +6,7 @@ import {
 
 import { Iingredient } from "../../utils/types/types";
 import { TActions } from "../actions/actionType";
+import { constructor } from "../actions/constructor";
 
 
 type TinitialStateConstructor = {
@@ -16,7 +17,7 @@ const initialState: TinitialStateConstructor = {
   constructorIngredients: [],
 };
 
-function constructorReducer(state = initialState, action: TActions) {
+function constructorReducer(state = initialState, action: PayloadAction<TActions>) {
   switch (action.type) {
     case ADD_INGREDIENT_TO_CONSTRUCTOR: {
       return {

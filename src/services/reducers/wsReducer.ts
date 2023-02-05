@@ -1,3 +1,4 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import { TOrderDetails } from "../../utils/types/types";
 import {
   WS_CONNECTION_SUCCESS,
@@ -44,7 +45,7 @@ const initialState:initialStateType  = {
   },
 };
 
-const wsReducer = (state = initialState, action: wsConectType) => {
+const wsReducer = (state = initialState, action:PayloadAction<wsConectType>) => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {

@@ -1,5 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
+import { TActions } from "../actions/actionType";
 
 
 
@@ -20,7 +21,7 @@ const initialState: initialStateType = {
   orderFailed: false,
 };
 
-const orderReducer = (state = initialState, action: PayloadAction) => {
+const orderReducer = (state = initialState, action: PayloadAction<TActions>) => {
   switch (action.type) {
     case GET_ORDER_REQUEST: {
       return {
