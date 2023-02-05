@@ -1,3 +1,4 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import { TOrder, TOrderNumber, TOrderDetails } from "../../utils/types/types";
 
 export const WS_CONNECTION_START = "WS_CONNECTION_START";
@@ -119,7 +120,7 @@ export interface IwsUserSendMessageType {
 };
 export interface IwsUserConnectionErrorType {
   readonly type: typeof WS_USER_CONNECTION_ERROR;
-  readonly payload: any;
+  readonly payload: string;
 };
 export interface IwsUserConnectionClosedType {
   readonly type: typeof WS_USER_CONNECTION_CLOSED;
@@ -128,10 +129,10 @@ export interface IwsUserConnectionCloseType {
   readonly type: typeof WS_USER_CONNECTION_CLOSE;
 };
 
-export const wsConnectionStart = (url: string): IwsConnectionStartType => {
+export const wsConnectionStart = (action: PayloadAction<IwsConnectionStartType>) => {
   return {
     type: WS_CONNECTION_START,
-    url,
+    url: action.payload,
   };
 };
 
@@ -141,10 +142,10 @@ export const wsConnectionSuccess = (): IwsConnectionSuccessType => {
   };
 };
 
-export const wsConnectionError = (error: any): IwsConnectionErrorType => {
+export const wsConnectionError = (action: PayloadAction<IwsConnectionErrorType>): IwsConnectionErrorType => {
   return {
     type: WS_CONNECTION_ERROR,
-    payload: error
+    payload: action.payload
   };
 };
 
@@ -159,19 +160,17 @@ export const wsConnectionClose = (): IwsConnectionCloseType => {
   };
 };
 
-export const wsGetMessage = (message: string[]): IwsGetMessageType => {
+export const wsGetMessage = (action: PayloadAction<IwsGetMessageType>) => {
   return {
     type: WS_GET_MESSAGE,
-    payload: message,
+    payload: action.payload,
   };
 };
 
-export const wsUserConnectionStart = (url: string): IwsUserConnectionStartType => {
+export const wsUserConnectionStart = (action: PayloadAction<IwsUserConnectionStartType>) => {
   return {
     type: WS_USER_CONNECTION_START,
-    payload: {
-      url,
-    },
+    payload: action.payload
   };
 };
 
@@ -181,24 +180,24 @@ export const wsUserConnectionSuccess = (): IwsUserConnectionSuccessType => {
   };
 };
 
-export const wsUserGetMessage = (userMessage: TOrderDetails): IwsUserGetMessageType => {
+export const wsUserGetMessage = (action: PayloadAction<IwsUserGetMessageType>) => {
   return {
     type: WS_USER_GET_MESSAGE,
-    payload: userMessage
+    payload: action.payload
   };
 };
 
-export const wsUserSendMessage = (order: TOrder): IwsUserSendMessageType => {
+export const wsUserSendMessage = (action: PayloadAction<IwsUserSendMessageType>) => {
 
   return {
     type: WS_USER_SEND_MESSAGE,
-    payload: order,
+    payload: action.payload
   };
 };
-export const wsUserConnectionError = (error: any): IwsUserConnectionErrorType => {
+export const wsUserConnectionError = (action: PayloadAction<IwsUserConnectionErrorType>) => {
   return {
     type: WS_USER_CONNECTION_ERROR,
-    payload: error
+    payload: action.payload
   };
 };
 export const wsUserConnectionClosed = (): IwsUserConnectionClosedType => {
