@@ -15,21 +15,21 @@ const initialState: TinitialStateConstructor = {
   constructorIngredients: [],
 };
 
-function constructorReducer(state = initialState, action: PayloadAction<TActions>) {
+function constructorReducer(state = initialState, action: TActions) {
   switch (action.type) {
     case ADD_INGREDIENT_TO_CONSTRUCTOR: {
       return {
         ...state,
         constructorIngredients: [
           ...state.constructorIngredients,
-          action.payload,
+          action.draggedIngredient,
         ],
       };
     }
     case DELETE_INGREDIENT_FROM_CONSTRUCTOR: {
       let itemToDeleteIndex = state.constructorIngredients
         .map((item) => item.key)
-        .indexOf(action.payload);
+        .indexOf(action.id);
       return {
         ...state,
         constructorIngredients: [...state.constructorIngredients].filter(

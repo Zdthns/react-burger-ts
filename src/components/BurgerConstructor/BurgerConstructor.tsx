@@ -39,7 +39,7 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
   const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
   );
-  const orderBun = useMemo<Iingredient>(() => {
+  const orderBun = useMemo(() => {
     return constructorIngredients.find(
       (item: Iingredient) => item.type === "bun"
     );
