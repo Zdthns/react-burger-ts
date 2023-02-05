@@ -1,16 +1,14 @@
 import { ADD_INGREDIENT_DATA, DELETE_INGREDIENT_DATA, OPEN_INGREDIENT_DETAILS, CLOSE_INGREDIENT_DETAILS, OPEN_ORDER_DETAILS, CLOSE_ORDER_DETAILS, ADD_INGREDIENT_TO_CONSTRUCTOR, DELETE_INGREDIENT_FROM_CONSTRUCTOR, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED } from "../../utils/types/constants"
 import { Iingredient } from "../../utils/types/types"
+import { constructor } from "./constructor"
 import { TgetIngredients } from "./ingredients"
+import { modal } from "./modals"
 import { wsConectType } from "./wsConect"
 
 
 export type TActions =
-  IopenIngredientDetailsModalsType
-  | IcloseIngredientDetailsModalsType
-  | IopenOrderDetailsModalsType
-  | IcloseOrderDetailsModalsType
-  | IdeletIngredientFromConstructor
-  | IaddIngredientToConstructor
+  modal
+  | constructor
   | IaddIngredientData
   | IdeletIngredientData
   | IgetIngredientsRequest
@@ -18,8 +16,7 @@ export type TActions =
   | IgetIngredientsFailed
   | wsConectType
   | TgetIngredients
-  | addIngredientToConstructor
-  | deleteIngredientToConstructor
+
 
 
 
@@ -35,19 +32,6 @@ interface IdeletIngredientData {
 //modal
 
 
-interface IaddIngredientToConstructor {
-  readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR
-  readonly payload: TdraggedIngredient,
-};
-
-type TdraggedIngredient = {
-  item: Iingredient[],
-  key: string
-}
-interface IdeletIngredientFromConstructor {
-  readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  readonly payload: string
-};
 
 interface IgetIngredientsRequest {
   readonly type: typeof GET_INGREDIENTS_REQUEST

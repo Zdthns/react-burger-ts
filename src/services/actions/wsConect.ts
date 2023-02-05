@@ -98,7 +98,7 @@ export interface IwsConnectionCloseType {
 };
 export interface IwsGetMessageType {
   readonly type: typeof WS_GET_MESSAGE;
-  readonly payload: TOrderNumber;
+  readonly payload: string[];
 };
 export interface IwsUserConnectionStartType {
   readonly type: typeof WS_USER_CONNECTION_START;
@@ -159,7 +159,7 @@ export const wsConnectionClose = (): IwsConnectionCloseType => {
   };
 };
 
-export const wsGetMessage = (message: TOrderNumber): IwsGetMessageType => {
+export const wsGetMessage = (message: string[]): IwsGetMessageType => {
   return {
     type: WS_GET_MESSAGE,
     payload: message,

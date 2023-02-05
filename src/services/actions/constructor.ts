@@ -1,30 +1,38 @@
 import { ADD_INGREDIENT_TO_CONSTRUCTOR, DELETE_INGREDIENT_FROM_CONSTRUCTOR } from "../../utils/types/constants"
 import { Iingredient } from "../../utils/types/types"
 
+export type constructor =
+  IaddIngredientToConstructor
+  | TdraggedIngredient
+  | IdeletIngredientFromConstructor
 
 
-export interface addIngredientToConstructor {
-  readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR,
+export interface IaddIngredientToConstructor {
+  readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR
   readonly draggedIngredient: Iingredient,
-  readonly key: string
-}
+};
 
-export interface deleteIngredientToConstructor {
+export type TdraggedIngredient = {
+  item: Iingredient,
+  key: string
+
+}
+export interface IdeletIngredientFromConstructor {
   readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  readonly payload: string
-}
+  readonly id: string
+};
 
-export const addIngredientToConstructor = (draggedIngredient: addIngredientToConstructor) => {
+
+export const addIngredientToConstructor = (item: Iingredient,
+): IaddIngredientToConstructor => {
   return {
     type: ADD_INGREDIENT_TO_CONSTRUCTOR,
-    draggedIngredient: draggedIngredient,
-    key: draggedIngredient.key
+    draggedIngredient: item,
   }
 }
-
-export const deleteIngredientFromConstructor = (item: deleteIngredientToConstructor) => {
+export const deleteIngredientFromConstructor = (id: string): IdeletIngredientFromConstructor => {
   return {
     type: DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-    id: item,
+    id: id,
   }
 }

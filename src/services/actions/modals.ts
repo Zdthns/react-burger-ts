@@ -1,5 +1,11 @@
 import { OPEN_INGREDIENT_DETAILS, CLOSE_INGREDIENT_DETAILS, OPEN_ORDER_DETAILS, CLOSE_ORDER_DETAILS } from "../../utils/types/constants";
 
+export type modal =
+  IopenIngredientDetailsModalsType
+  | IcloseIngredientDetailsModalsType
+  | IopenOrderDetailsModalsType
+  | IcloseOrderDetailsModalsType
+
 
 interface IopenIngredientDetailsModalsType {
   readonly type: typeof OPEN_INGREDIENT_DETAILS
