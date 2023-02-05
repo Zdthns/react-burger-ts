@@ -15,22 +15,24 @@ import {
   wsConectType,
 } from "../actions/wsConect";
 
+type message = {
+  orders: Array<TOrderDetails>,
+  total: number,
+  totalToday: number,
+}
+type userMessages = {
+  orders: Array<TOrderDetails>,
+  total: number,
+  totalToday: number,
+}
 type initialStateType = {
   wsConnected: boolean,
-  wsError: string |undefined,
-  messages: {
-    orders: Array<TOrderDetails>,
-    total: number,
-    totalToday: number,
-  },
-  userMessages: {
-    orders: Array<TOrderDetails>,
-    total: number,
-    totalToday: number,
-  },
+  wsError: string | undefined,
+  messages: message
+  userMessages: userMessages
 };
 
-const initialState:initialStateType  = {
+const initialState: initialStateType = {
   wsConnected: false,
   wsError: undefined,
   messages: {
@@ -45,7 +47,7 @@ const initialState:initialStateType  = {
   },
 };
 
-const wsReducer = (state = initialState, action:PayloadAction<wsConectType>) => {
+const wsReducer = (state = initialState, action: PayloadAction<wsConectType>) => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {
