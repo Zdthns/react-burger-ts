@@ -17,12 +17,9 @@ import Caption from "../../components/profileComponents/Caption/Caption";
 const OrderPage: FC = () => {
   const dispatch = useAppDispatch();
   const token = getCookie("token");
+  const url = `${wsUserUrl}?token=${token?.replace("Bearer ", "")}`;
   useEffect(() => {
-    dispatch(
-      wsUserConnectionStart(
-        `${wsUserUrl}?token=${token?.replace("Bearer ", "")}`
-      )
-    );
+    dispatch(wsUserConnectionStart({ url }));
     return () => {
       dispatch(wsUserConnectionClosed());
     };

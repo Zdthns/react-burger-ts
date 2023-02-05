@@ -29,7 +29,7 @@ function constructorReducer(state = initialState, action: PayloadAction<TActions
       };
     }
     case DELETE_INGREDIENT_FROM_CONSTRUCTOR: {
-      let itemToDeleteIndex: number = state.constructorIngredients
+      let itemToDeleteIndex = state.constructorIngredients
         .map((item) => item.key)
         .indexOf(action.payload);
       return {
