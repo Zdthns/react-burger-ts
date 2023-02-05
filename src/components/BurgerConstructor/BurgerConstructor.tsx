@@ -24,6 +24,10 @@ import {
   TOrderDetails,
   TOrderNumber,
 } from "../../utils/types/types";
+import {
+  addIngredientToConstructor,
+  deleteIngredientFromConstructor,
+} from "../../services/actions/constructor";
 
 type PropsType = {
   createOrder: (orderData: TOrderNumber) => void;
@@ -36,21 +40,21 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
   const constructorIngredients = useAppSelector(
     (store) => store.constructorReducer.constructorIngredients
   );
-  const orderBun = useMemo(() => {
+  const orderBun = useMemo<Iingredient>(() => {
     constructorIngredients.find((item: Iingredient) => item.type === "bun");
   }, []);
 
-  const burgerBun = useMemo(() => {
+  const burgerBun = useMemo<Iingredient[]>(() => {
     constructorIngredients.filter((item: Iingredient) => item.type === "bun");
   }, []);
 
-  const orderToppings = useMemo(() => {
+  const orderToppings = useMemo<Iingredient[]>(() => {
     constructorIngredients
       .filter((item: { type: string }) => item.type !== "bun")
       .map((item: Iingredient) => item._id);
   }, []);
 
-  const orderData = useMemo(() => {
+  const orderData = useMemo<Iingredient[]>(() => {
     if (!orderBun || !orderToppings.length) return [];
     return [orderBun._id, ...orderToppings, orderBun._id];
   }, [orderBun, orderToppings]);
@@ -61,21 +65,25 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
       if (item.type === "bun") {
         for (let i = 0; i < 2; i++) {
           if (burgerBun.length > 0) {
-            dispatch({
-              type: DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-              id: "bun",
-            });
+            dispatch(deleteIngredientFromConstructor("bun"));
+            //{
+            //  type: DELETE_INGREDIENT_FROM_CONSTRUCTOR,
+            //  id: "bun",
+            //});
           }
-          dispatch({
-            type: ADD_INGREDIENT_TO_CONSTRUCTOR,
-            draggedIngredient: { ...item, key: "bun" },
-          });
+          const draggedIngredient = { ...item, key: "bun" };
+          dispatch(addIngredientToConstructor(draggedIngredient));
+          //{
+          //  type: ADD_INGREDIENT_TO_CONSTRUCTOR,
+          //  draggedIngredient: { ...item, key: "bun" },
+          //});
         }
       } else {
-        dispatch({
-          type: ADD_INGREDIENT_TO_CONSTRUCTOR,
-          draggedIngredient: { ...item, key: uuidv4() },
-        });
+        dispatch(addIngredientToConstructor({ ...item, key: uuidv4() }));
+        //{
+        //  type: ADD_INGREDIENT_TO_CONSTRUCTOR,
+        //  draggedIngredient: { ...item, key: uuidv4() },
+        //});
       }
     },
   });

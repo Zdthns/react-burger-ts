@@ -22,15 +22,7 @@ export type TActions =
   | deleteIngredientToConstructor
 
 
-  export interface addIngredientToConstructor {
-    readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR,
-    readonly payload: Iingredient
-  }
 
-  export interface deleteIngredientToConstructor {
-    readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-    readonly payload: string
-  }
 interface IaddIngredientData {
   readonly type: typeof ADD_INGREDIENT_DATA,
   readonly item: Iingredient,
@@ -41,18 +33,7 @@ interface IdeletIngredientData {
   readonly item: null
 }
 //modal
-interface IopenIngredientDetailsModalsType {
-  readonly type: typeof OPEN_INGREDIENT_DETAILS
-};
-interface IcloseIngredientDetailsModalsType {
-  readonly type: typeof CLOSE_INGREDIENT_DETAILS,
-};
-interface IopenOrderDetailsModalsType {
-  readonly type: typeof OPEN_ORDER_DETAILS,
-};
-interface IcloseOrderDetailsModalsType {
-  readonly type: typeof CLOSE_ORDER_DETAILS
-}
+
 
 interface IaddIngredientToConstructor {
   readonly type: typeof ADD_INGREDIENT_TO_CONSTRUCTOR
