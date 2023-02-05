@@ -6,7 +6,7 @@ import Form from "../../components/Form/Form";
 import { registrationUser } from "../../services/actions/user";
 import { TFields } from "../../utils/types/types";
 
-const RegisterPage = () => {
+const RegisterPage: FC = () => {
   const [form, setForm] = React.useState({ name: "", email: "", password: "" });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

@@ -3,7 +3,6 @@ import { Iingredient, TOrderNumber } from "../../utils/types/types"
 
 export type constructor =
   IaddIngredientToConstructor
-  | TdraggedIngredient
   | IdeletIngredientFromConstructor
 
 
@@ -12,14 +11,14 @@ export interface IaddIngredientToConstructor {
   readonly draggedIngredient: Iingredient,
 };
 
-export type TdraggedIngredient = {
-  item: Iingredient,
-  key: string
+//export type TdraggedIngredient = {
+//  item: Iingredient,
+//  key: string
 
-}
+//}
 export interface IdeletIngredientFromConstructor {
   readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  readonly id: TOrderNumber
+  readonly id: string
 };
 
 

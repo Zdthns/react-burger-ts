@@ -17,7 +17,7 @@ export type TgetIngredientsRequest = {
 }
 export type TgetIngredientsSuccess = {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  readonly ingredients: IingredientID[]
+  readonly ingredients: IingredientID
 }
 
 export type TgetIngredientsError = {
@@ -38,7 +38,7 @@ const getIngredientsRequest = (): TgetIngredientsRequest => {
     type: GET_INGREDIENTS_REQUEST
   }
 }
-const getIngredientsSuccess = (item: TgetIngredientsSuccess) => {
+const getIngredientsSuccess = (item: IingredientID): TgetIngredientsSuccess => {
   return {
     type: GET_INGREDIENTS_SUCCESS,
     ingredients: item,
@@ -49,10 +49,10 @@ const getIngredientsFailed = (): TgetIngredientsError => {
     type: GET_INGREDIENTS_FAILED
   }
 }
-export const addIngredientData = (item: addIngredientDataType) => {
+export const addIngredientData = (item: Iingredient): addIngredientDataType => {
   return {
     type: ADD_INGREDIENT_DATA,
-    item: item,
+    ingredients: item,
   };
 }
 export function deleteIngredienData(): deleteIngredienDataType {
