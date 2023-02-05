@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import style from "../style.module.css";
 import Form from "../../components/Form/Form";
-import { requestCode } from "../../services/actions/user";
 import { TFields } from "../../utils/types/types";
 import { useAppDispatch } from "../../services/hook/hook";
+import { getPasswordReset } from "../../utils/userApi";
+import { requestCode } from "../../services/actions/user";
 
 const ForgotPassword: React.FC = () => {
   const [form, setForm] = useState({ email: "" });

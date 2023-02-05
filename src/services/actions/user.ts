@@ -46,6 +46,7 @@ interface IForgotCodeRequest {
 // запрос выполнился успешно
 interface IForgotCodeSuccess {
   readonly type: typeof FORGOT_CODE_SUCCESS;
+  readonly user: TUser
 }
 // запрос выполнился с ошибкой
 interface IForgotCodeError {
@@ -127,9 +128,12 @@ interface ILogoutSuccess {
 interface ILogoutError {
   readonly type: typeof LOGOUT_USER_ERROR;
 }
-const forgotCodeRequest = (): IForgotCodeRequest => ({ type: FORGOT_CODE_REQUEST })
+export const forgotCodeRequest = (): IForgotCodeRequest => ({ type: FORGOT_CODE_REQUEST })
 // запрос выполнился успешно
-const forgotCodeSuccess = (): IForgotCodeSuccess => ({ type: FORGOT_CODE_SUCCESS })
+const forgotCodeSuccess = (user: TUser): IForgotCodeSuccess => ({
+  type: FORGOT_CODE_SUCCESS,
+  user: user
+})
 // запрос выполнился с ошибкой
 const forgotCodeError = (): IForgotCodeError => ({ type: FORGOT_CODE_ERROR })
 // запрос вып
@@ -138,26 +142,26 @@ export const resetPasswordSuccess = (): IResetPasswordSuccess => ({ type: FORGOT
 export const resetPasswordFailed = (): IResetPasswordFailed => ({ type: FORGOT_PASSWORD_ERROR })
 // Регистрация
 const isRegisterUserRequest = (): IsRegisterUserRequest => ({ type: REGISTER_USER_REQUEST })
-const registerUserSuccess = (user: IRegisterUserSuccess) => {
-  type: REGISTER_USER_SUCCESS;
-  user: user;
-}
+const registerUserSuccess = (user: TUser): IRegisterUserSuccess => ({
+  type: REGISTER_USER_SUCCESS,
+  user: user
+})
 const registerUserError = (): IRegisterUserError => ({ type: REGISTER_USER_ERROR })
 // запрос данных о пользователе
 const getUserRequest = (): IGetUserRequest => ({ type: GET_USER_REQUEST })
-const getUserSuccess = (user: IGetUserSuccess) => {
-  type: GET_USER_SUCCESS;
-  user: user;
-}
+const getUserSuccess = (user: TUser): IGetUserSuccess => ({
+  type: GET_USER_SUCCESS,
+  user: user
+})
 const getUserError = (): IGetUserError => ({ type: GET_USER_ERROR })
 // изменение данных о пользователя
 const updateUserRequest = () => {
   type: UPDATE_USER_REQUEST;
 }
-export const updateUserSuccess = (user: IUpdateUserRequest) => {
-  type: UPDATE_USER_SUCCESS;
-  user: user;
-}
+export const updateUserSuccess = (user: TUser): IUpdateUserSuccess => ({
+  type: UPDATE_USER_SUCCESS,
+  user: user
+})
 const updateUserError = (): IUpdateUserError => ({ type: UPDATE_USER_ERROR })
 // токен
 const updateTokenRequest = (): IUpdateTokenRequest => ({ type: UPDATE_TOKEN_REQUEST })
@@ -167,7 +171,7 @@ const updateTokenSuccess = (user: IUpdateTokenSuccess) => {
 }
 const updateTokenError = (): IUpdateTokenError => ({ type: UPDATE_TOKEN_ERROR })
 const ILoginUserRequest = (): ILoginUserRequest => ({ type: LOGIN_USER_REQUEST })
-const loginUserSuccess = (user: ILoginUserSuccess) => ({
+const loginUserSuccess = (user: TUser): ILoginUserSuccess => ({
   type: LOGIN_USER_SUCCESS,
   user: user
 })
@@ -185,7 +189,7 @@ export const requestCode = (email: string) => {
     dispatch(forgotCodeRequest());
     getPasswordReset(email).then((res) => {
       if (res && res.success) {
-        dispatch(forgotCodeSuccess());
+        dispatch(forgotCodeSuccess(res));
       }
     })
       .catch(() => dispatch(forgotCodeError()));
@@ -219,7 +223,7 @@ export const refreshToken: AppThunk = () => {
         if (res.success) {
           setCookie("token", res.accessToken, { expires: 1200 });
           localStorage.setItem("jwt", res.refreshToken);
-          dispatch(updateTokenSuccess(res.user));
+          dispatch(updateTokenSuccess(res));
         }
       })
       .catch(() => dispatch(updateTokenError()));

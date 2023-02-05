@@ -18,7 +18,7 @@ const initialState: initialStateType = {
   orderVisible: false,
 };
 export const modalsReducer = (
-  state = initialState, action: PayloadAction<TActions>
+  state = initialState, action: TActions
 ) => {
   switch (action.type) {
     case OPEN_INGREDIENT_DETAILS: {

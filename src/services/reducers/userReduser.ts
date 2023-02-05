@@ -26,6 +26,7 @@ import {
   UPDATE_TOKEN_SUCCESS,
   UPDATE_TOKEN_ERROR,
 } from "../../utils/types/constants";
+import { TActions } from "../actions/actionType";
 
 
 export type initialStateUserType = {
@@ -113,7 +114,7 @@ const initialState: initialStateUserType = {
   //загрузка
   preloader: false,
 };
-const userReducer = (state: initialStateUserType = initialState, action: any): initialStateUserType => {
+const userReducer = (state: initialStateUserType = initialState, action: TActions): initialStateUserType => {
   switch (action.type) {
     // востановление пароля
     // запрос начал выполняться
@@ -128,7 +129,7 @@ const userReducer = (state: initialStateUserType = initialState, action: any): i
     case FORGOT_CODE_SUCCESS: {
       return {
         ...state,
-        user: action.payload,
+        user: action.user,
         isCodeRequest: false,
         isCodeFailed: false,
         isReplacePassword: true,

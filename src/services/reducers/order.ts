@@ -21,7 +21,7 @@ const initialState: initialStateType = {
   orderFailed: false,
 };
 
-const orderReducer = (state = initialState, action: PayloadAction<TActions>) => {
+const orderReducer = (state = initialState, action: TActions) => {
   switch (action.type) {
     case GET_ORDER_REQUEST: {
       return {
@@ -33,7 +33,7 @@ const orderReducer = (state = initialState, action: PayloadAction<TActions>) => 
     case GET_ORDER_SUCCESS: {
       return {
         ...state,
-        order: action.payload,
+        order: action.order,
         orderRequest: false,
       };
     }
