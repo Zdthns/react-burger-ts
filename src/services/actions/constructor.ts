@@ -18,7 +18,7 @@ export interface IaddIngredientToConstructor {
 //}
 export interface IdeletIngredientFromConstructor {
   readonly type: typeof DELETE_INGREDIENT_FROM_CONSTRUCTOR,
-  readonly id: number
+  readonly id: string
 };
 
 
@@ -29,7 +29,7 @@ export const addIngredientToConstructor = (item: Iingredient
     draggedIngredient: item,
   }
 }
-export const deleteIngredientFromConstructor = (id: number): IdeletIngredientFromConstructor => {
+export const deleteIngredientFromConstructor = (id: string): IdeletIngredientFromConstructor => {
   return {
     type: DELETE_INGREDIENT_FROM_CONSTRUCTOR,
     id: id,
