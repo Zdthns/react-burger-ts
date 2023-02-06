@@ -6,7 +6,7 @@ import { TActions } from "../actions/actionType";
 
 
 type orderType = {
-  number: null | TOrderDetails
+  number: null | string //TOrderDetails
 }
 
 type initialStateType = {

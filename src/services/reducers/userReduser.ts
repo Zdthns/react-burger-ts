@@ -114,7 +114,7 @@ const initialState: initialStateUserType = {
   //загрузка
   preloader: false,
 };
-const userReducer = (state: initialStateUserType = initialState, action: TActions): initialStateUserType => {
+const userReducer = (state: initialStateUserType = initialState, action: TActions) => {
   switch (action.type) {
     // востановление пароля
     // запрос начал выполняться

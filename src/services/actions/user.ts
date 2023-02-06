@@ -14,6 +14,7 @@ import {
 } from "../../utils/userApi.js";
 import { TUser, TForm } from "../../utils/types/types.js";
 import { PayloadAction } from "@reduxjs/toolkit";
+
 export type userRegistr =
   IForgotCodeRequest
   | IForgotCodeSuccess
@@ -155,9 +156,7 @@ const getUserSuccess = (user: TUser): IGetUserSuccess => ({
 })
 const getUserError = (): IGetUserError => ({ type: GET_USER_ERROR })
 // изменение данных о пользователя
-const updateUserRequest = () => {
-  type: UPDATE_USER_REQUEST;
-}
+const updateUserRequest = (): IUpdateUserRequest => ({ type: UPDATE_USER_REQUEST })
 export const updateUserSuccess = (user: TUser): IUpdateUserSuccess => ({
   type: UPDATE_USER_SUCCESS,
   user: user
@@ -264,10 +263,10 @@ export const logoutUser: AppThunk = () => {
 };
 export const getUpdateUser: AppThunk = (data: TUser) => {
   return function (dispatch: AppDispatch) {
-    dispatch({ type: UPDATE_USER_REQUEST });
+    dispatch(updateUserRequest());
     updateUser(data)
       .then((res) => {
-        dispatch(updateUserSuccess(user));
+        dispatch(updateUserSuccess(res.user));
       })
       .catch(() => {
         if (localStorage.getItem("jwt")) {
