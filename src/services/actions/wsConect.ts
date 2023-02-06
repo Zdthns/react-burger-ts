@@ -89,7 +89,7 @@ export interface IwsConnectionSuccessType {
 };
 export interface IwsConnectionErrorType {
   readonly type: typeof WS_CONNECTION_ERROR;
-  readonly payload: any
+  readonly payload: any;
 };
 export interface IwsConnectionClosedType {
   readonly type: typeof WS_CONNECTION_CLOSED;
@@ -120,7 +120,7 @@ export interface IwsUserSendMessageType {
 };
 export interface IwsUserConnectionErrorType {
   readonly type: typeof WS_USER_CONNECTION_ERROR;
-  readonly payload: string;
+  readonly payload: any
 };
 export interface IwsUserConnectionClosedType {
   readonly type: typeof WS_USER_CONNECTION_CLOSED;
