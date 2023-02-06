@@ -29,6 +29,7 @@ export type userRegistr =
   | IGetUserSuccess
   | IGetUserError
   | IUpdateUserRequest
+  | IUpdateUserSuccess
   | IUpdateTokenRequest
   | IUpdateTokenSuccess
   | IUpdateTokenError

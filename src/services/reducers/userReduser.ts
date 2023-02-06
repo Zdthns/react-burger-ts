@@ -228,7 +228,7 @@ const userReducer = (state: initialStateUserType = initialState, action: TAction
     case UPDATE_USER_SUCCESS: {
       return {
         ...state,
-        user: action.user,
+        user: action,
         isUpdateUserRequest: false,
         isUpdateUserFailed: false,
       };

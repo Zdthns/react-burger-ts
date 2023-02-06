@@ -28,9 +28,7 @@ export type ownerType = {
 }
 export type IingredientID = Iingredient & { id: string }
 
-export type TOrderNumber = {
-  number: number;
-};
+
 //детали ингредиента
 export interface Iingredient {
   _id: string;
@@ -48,11 +46,19 @@ export interface Iingredient {
   key?: string
   count?: number
 };
-export interface Imessage {
+export type Imessage =
+  TOrderNumber
+  | IOrderMessage
+
+export interface TOrderNumber {
+  number: number;
+};
+export interface IOrderMessage {
   orders: Array<TOrderDetails>,
   total: number,
   totalToday: number,
 }
+
 export interface IuserMessages {
   orders: Array<TOrderDetails>,
   total: number,

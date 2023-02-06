@@ -88,7 +88,7 @@ const App: FC = () => {
     dispatch(getIngredients());
   }, [dispatch, refreshTokenData, isAuth, cookie, updateTokenSuccess]);
 
-  const createOrder = (orderData: string[]) => {
+  const createOrder = (orderData: Iingredient[]) => {
     dispatch(getOrder(orderData));
     openOrderModal();
   };

@@ -29,7 +29,7 @@ import {
 } from "../../services/actions/constructor";
 
 type PropsType = {
-  createOrder: (orderData: string[]) => void;
+  createOrder: (orderData: Iingredient[]) => void;
 };
 
 const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
