@@ -45,19 +45,19 @@ const BurgerConstructor: FC<PropsType> = ({ createOrder }) => {
     );
   }, []);
 
-  const burgerBun = useMemo<Iingredient[]>(() => {
+  const burgerBun = useMemo(() => {
     return constructorIngredients.filter(
       (item: Iingredient) => item.type === "bun"
     );
   }, []);
 
-  const orderToppings = useMemo<string[]>(() => {
+  const orderToppings = useMemo(() => {
     return constructorIngredients
       .filter((item: { type: string }) => item.type !== "bun")
       .map((item: Iingredient) => item._id);
   }, []);
 
-  const orderData = useMemo<string[]>(() => {
+  const orderData = useMemo(() => {
     if (!orderBun || !orderToppings.length) return [];
     return [orderBun._id, ...orderToppings, orderBun._id];
   }, [orderBun, orderToppings]);

@@ -1,7 +1,7 @@
 import { getOrderNumber } from "../../utils/burger";
 import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
 import { TOrderNumber } from "../../utils/types/types";
-import { AppDispatch } from "../store";
+import { AppDispatch, AppThunk } from "../store";
 
 export type order =
   IdetOrderRequest
@@ -26,7 +26,7 @@ const detOrderSuccess = (res: Response): IdetOrderSuccess => ({
 })
 const detOrderFailed = (): IdetOrderFailed => ({ type: GET_ORDER_FAILED })
 
-export const getOrder = (orderData: TOrderNumber) => {
+export const getOrder: AppThunk = (orderData) => {
   return function (dispatch: AppDispatch) {
     dispatch(detOrderRequest());
     getOrderNumber(orderData)
