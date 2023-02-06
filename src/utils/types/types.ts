@@ -26,9 +26,8 @@ export type ownerType = {
   createdAt: string
   updatedAt: string
 }
-export interface IingredientID {
-  _id: string;
-}
+export type IingredientID = Iingredient & { id: string }
+
 export type TOrderNumber = {
   [name: string]: string;
 };

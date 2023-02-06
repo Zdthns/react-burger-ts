@@ -11,7 +11,7 @@ type PropsType = {
 
 const Orders: FC<PropsType> = ({ data }) => {
   const location = useLocation();
-  const orders = data;
+  const orders = data; // массив заказов
 
   return (
     <>

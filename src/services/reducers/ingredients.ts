@@ -9,7 +9,7 @@ import { TActions } from "../actions/actionType";
 
 
 export type initialStateType = {
-  ingredients: ReadonlyArray<Iingredient>,
+  ingredients: IingredientID[],
   ingredientsRequest: boolean,
   ingredientsFailed: boolean,
 };
