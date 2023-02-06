@@ -38,7 +38,7 @@ const IngredientInfo: FC<PropsType> = ({ ingredient, count }) => {
       </div>
       <div className={style.qty_container}>
         <p className="text text_type_digits-default mr-2">{`${
-          count[currentIngredient?._id]
+          count[currentIngredient._id]
         } x ${currentIngredient?.price}`}</p>
         <CurrencyIcon type="primary" />
       </div>

@@ -49,7 +49,16 @@ export interface Iingredient {
   key?: string
   count?: number
 };
-
+export interface Imessage {
+  orders: Array<TOrderDetails>,
+  total: number,
+  totalToday: number,
+}
+export interface IuserMessages {
+  orders: Array<TOrderDetails>,
+  total: number,
+  totalToday: number,
+}
 
 export type TOrderDetails = {
   ingredients: Array<Iingredient>;

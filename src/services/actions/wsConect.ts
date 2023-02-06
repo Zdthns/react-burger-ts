@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TOrder, TOrderNumber, TOrderDetails } from "../../utils/types/types";
+import { TOrder, TOrderNumber, TOrderDetails, IuserMessages, Imessage } from "../../utils/types/types";
 
 export const WS_CONNECTION_START = "WS_CONNECTION_START";
 export const WS_CONNECTION_SUCCESS = "WS_CONNECTION_SUCCESS";
@@ -99,7 +99,7 @@ export interface IwsConnectionCloseType {
 };
 export interface IwsGetMessageType {
   readonly type: typeof WS_GET_MESSAGE;
-  readonly payload: string[];
+  readonly payload: Imessage;
 };
 export interface IwsUserConnectionStartType {
   readonly type: typeof WS_USER_CONNECTION_START;
@@ -112,7 +112,7 @@ export interface IwsUserConnectionSuccessType {
 };
 export interface IwsUserGetMessageType {
   readonly type: typeof WS_USER_GET_MESSAGE;
-  readonly payload: string;
+  readonly payload: IuserMessages;
 };
 export interface IwsUserSendMessageType {
   readonly type: typeof WS_USER_SEND_MESSAGE;
@@ -160,7 +160,7 @@ export const wsConnectionClose = (): IwsConnectionCloseType => {
   };
 };
 
-export const wsGetMessage = (payload: string[]): IwsGetMessageType => {
+export const wsGetMessage = (payload: Imessage): IwsGetMessageType => {
   return {
     type: WS_GET_MESSAGE,
     payload: payload,
@@ -180,7 +180,7 @@ export const wsUserConnectionSuccess = (): IwsUserConnectionSuccessType => {
   };
 };
 
-export const wsUserGetMessage = (payload: string): IwsUserGetMessageType => {
+export const wsUserGetMessage = (payload: IuserMessages): IwsUserGetMessageType => {
   return {
     type: WS_USER_GET_MESSAGE,
     payload: payload

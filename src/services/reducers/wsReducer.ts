@@ -1,5 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TOrderDetails } from "../../utils/types/types";
+import { Imessage, IuserMessages, TOrderDetails } from "../../utils/types/types";
+import { TActions } from "../actions/actionType";
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
@@ -15,21 +16,12 @@ import {
   wsConectType,
 } from "../actions/wsConect";
 
-type message = {
-  orders: Array<TOrderDetails>,
-  total: number,
-  totalToday: number,
-}
-type userMessages = {
-  orders: Array<TOrderDetails>,
-  total: number,
-  totalToday: number,
-}
+
 type initialStateType = {
   wsConnected: boolean,
   wsError: string | undefined,
-  messages: message
-  userMessages: userMessages
+  messages: Imessage
+  userMessages: IuserMessages
 };
 
 const initialState: initialStateType = {
@@ -47,7 +39,7 @@ const initialState: initialStateType = {
   },
 };
 
-const wsReducer = (state = initialState, action: PayloadAction<wsConectType>) => {
+const wsReducer = (state = initialState, action: TActions) => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {

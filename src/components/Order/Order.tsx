@@ -4,13 +4,14 @@ import { useAppSelector } from "../../services/hook/hook";
 import { formatDate } from "../../utils/orders";
 import { FC, useMemo } from "react";
 import Ingredient from "../feedComponents/ingredient/Ingredient";
+import { Iingredient } from "../../utils/types/types";
 
 type PropTypes = {
   status: string | undefined;
   orderNumber: string | undefined;
   orderCreateTime: string | undefined;
   burgerName: string | undefined;
-  ingredients: Array<string>;
+  ingredients: ReadonlyArray<Iingredient>;
 };
 
 const Order: FC<PropTypes> = ({
@@ -40,7 +41,7 @@ const Order: FC<PropTypes> = ({
 
   const totalOrder = ingredients.reduce((previousValue, currentItem) => {
     const ingredient = allIngredients.find((item) => {
-      return currentItem === item._id;
+      return currentItem._id === item._id;
     });
 
     if (!ingredient) {
