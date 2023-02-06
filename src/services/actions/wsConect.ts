@@ -194,7 +194,7 @@ export const wsUserSendMessage = (payload: TOrder): IwsUserSendMessageType => {
     payload: payload
   };
 };
-export const wsUserConnectionError = (payload: string): IwsUserConnectionErrorType => {
+export const wsUserConnectionError = (payload: any): IwsUserConnectionErrorType => {
   return {
     type: WS_USER_CONNECTION_ERROR,
     payload: payload
