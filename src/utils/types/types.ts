@@ -29,7 +29,7 @@ export type ownerType = {
 export type IingredientID = Iingredient & { id: string }
 
 export type TOrderNumber = {
-  [name: string]: string;
+  number: number;
 };
 //детали ингредиента
 export interface Iingredient {
@@ -65,7 +65,7 @@ export type TOrderDetails = {
   owner?: ownerType;
   name: string;
   status?: string;
-  number?: string;
+  number?: number;
   createdAt?: string;
   updatedAt?: string;
   id?: string;
