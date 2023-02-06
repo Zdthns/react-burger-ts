@@ -20,7 +20,12 @@ export type TUser = {
   password?: string
   token?: string | undefined;
 };
-
+export type ownerType = {
+  name: string
+  email: string
+  createdAt: string
+  updatedAt: string
+}
 export interface IingredientID {
   _id: string;
 }
@@ -47,15 +52,16 @@ export interface Iingredient {
 
 
 export type TOrderDetails = {
-  ingredients: Array<string>;
+  ingredients: Array<Iingredient>;
   _id?: string;
+  owner?: ownerType;
   name: string;
   status?: string;
   number?: string;
   createdAt?: string;
   updatedAt?: string;
   id?: string;
-  count?: TCount
+  price?: TCount
 };
 
 export type TCount = {

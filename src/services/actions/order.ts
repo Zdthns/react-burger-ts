@@ -1,6 +1,6 @@
 import { getOrderNumber } from "../../utils/burger";
 import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
-import { TOrderNumber } from "../../utils/types/types";
+import { Iingredient, TOrderDetails, TOrderNumber } from "../../utils/types/types";
 import { AppDispatch, AppThunk } from "../store";
 
 export type order =
@@ -8,19 +8,22 @@ export type order =
   | IdetOrderSuccess
   | IdetOrderFailed
 
+
 interface IdetOrderRequest {
   readonly type: typeof GET_ORDER_REQUEST,
 }
+
 interface IdetOrderSuccess {
   readonly type: typeof GET_ORDER_SUCCESS,
-  readonly order: Response,
+  readonly order: TOrderDetails
+
 }
 interface IdetOrderFailed {
   readonly type: typeof GET_ORDER_FAILED,
 }
 
 const detOrderRequest = (): IdetOrderRequest => ({ type: GET_ORDER_REQUEST })
-const detOrderSuccess = (res: Response): IdetOrderSuccess => ({
+const detOrderSuccess = (res: TOrderDetails): IdetOrderSuccess => ({
   type: GET_ORDER_SUCCESS,
   order: res
 })
