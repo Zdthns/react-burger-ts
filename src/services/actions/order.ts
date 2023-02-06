@@ -1,6 +1,6 @@
 import { getOrderNumber } from "../../utils/burger";
 import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
-import { Iingredient, TOrderDetails, TOrderNumber } from "../../utils/types/types";
+import { TOrderDetails } from "../../utils/types/types";
 import { AppDispatch, AppThunk } from "../store";
 
 export type order =

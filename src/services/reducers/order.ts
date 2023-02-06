@@ -1,11 +1,12 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { GET_ORDER_REQUEST, GET_ORDER_SUCCESS, GET_ORDER_FAILED } from "../../utils/types/constants";
+import { TOrderDetails } from "../../utils/types/types";
 import { TActions } from "../actions/actionType";
 
 
 
 type orderType = {
-  number: null | number
+  number: null | TOrderDetails
 }
 
 type initialStateType = {

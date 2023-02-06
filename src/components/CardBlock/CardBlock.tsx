@@ -1,11 +1,11 @@
 import style from "./cardBlock.module.css";
-import PropTypes from "prop-types";
 
 import React from "react";
 import { useAppSelector } from "../../services/hook/hook";
 
 import IngredientCard from "../IngredientCard/IngredientCard";
 import { AppStateType } from "../../services/reducers/root";
+import { Iingredient } from "../../utils/types/types";
 
 type PropType = { type: string; name: string; onClick: (event: any) => void };
 
@@ -22,8 +22,8 @@ const CardBlock = React.forwardRef<HTMLLIElement, PropType>(
         <div className={style.container}>
           {ingredients &&
             ingredients
-              .filter((item) => item.type === type)
-              .map((element) => (
+              .filter((item: { type: string }) => item.type === type)
+              .map((element: Iingredient) => (
                 <IngredientCard
                   elem={element}
                   onClick={() => onClick(element)}
@@ -35,11 +35,5 @@ const CardBlock = React.forwardRef<HTMLLIElement, PropType>(
     );
   }
 );
-
-CardBlock.propTypes = {
-  type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
 
 export default CardBlock;
